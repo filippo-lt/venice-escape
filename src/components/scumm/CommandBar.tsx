@@ -51,7 +51,7 @@ export function CommandBar({
         autoCorrect="off"
         spellCheck={false}
         className={[
-          "min-h-11 flex-1 bg-transparent font-mono text-2xl outline-none placeholder:text-stone-mid",
+          "min-h-11 min-w-0 flex-1 bg-transparent font-mono text-2xl outline-none placeholder:text-stone-mid",
           status === "wrong" ? "text-blood-bright" : "text-white-text",
         ].join(" ")}
       />
