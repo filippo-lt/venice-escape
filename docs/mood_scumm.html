@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Sette Àncore — A SCUMM Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     PALETTE — VGA 256, ocra/seppia tipo
+     Indiana Jones Fate of Atlantis / MI1
+     ============================================ */
+  :root {
+    --bg-deep: #1a0f08;          /* nero-marrone fondo */
+    --bg-night: #2a1810;          /* notte veneziana */
+    --bg-water: #3d2a18;          /* acqua canale */
+    --stone-dark: #4a3520;        /* pietra in ombra */
+    --stone-mid: #6b4a2a;         /* pietra media */
+    --stone-light: #8b6536;       /* pietra al sole */
+    --ocra: #b8842a;              /* ocra principale */
+    --ocra-light: #d4a541;        /* ocra chiara */
+    --sand: #e8c878;              /* sabbia/oro */
+    --paper: #f0d8a0;             /* pergamena chiara */
+    --highlight: #ffe8b0;         /* highlight */
+    --blood: #8b1a1a;             /* rosso veneziano */
+    --blood-bright: #c42424;      /* rosso acceso */
+    --sky-night: #2a3548;         /* blu notte */
+    --laguna: #3a5560;            /* verde laguna scuro */
+    --white-text: #f8e8c0;        /* testo principale */
+    --verb-yellow: #f0c020;       /* verbi SCUMM */
+    --selected: #ffffff;          /* selezionato */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #000;
+    color: var(--white-text);
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+
+  /* ============================================
+     SCANLINES + CRT EFFECT
+     ============================================ */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15) 0px,
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 199;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 60%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  }
+
+  /* ============================================
+     NAV
+     ============================================ */
+  .demo-nav {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    z-index: 250;
+    background: #000;
+    border: 2px solid var(--verb-yellow);
+    padding: 6px 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+  }
+  .demo-nav a {
+    color: var(--verb-yellow);
+    text-decoration: none;
+    margin: 0 6px;
+  }
+  .demo-nav a:hover { color: var(--selected); }
+
+  /* ============================================
+     GAME WINDOW — il "monitor" del gioco
+     ============================================ */
+  .game-window {
+    max-width: 960px;
+    margin: 0 auto 60px;
+    background: #000;
+    border: 3px solid var(--ocra);
+    box-shadow:
+      0 0 0 1px var(--stone-dark),
+      0 0 0 6px #000,
+      0 0 30px rgba(184, 132, 42, 0.3),
+      0 8px 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+  }
+
+  .section-label {
+    text-align: center;
+    color: var(--ocra-light);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    padding: 12px;
+    background: #000;
+    border-bottom: 1px solid var(--stone-dark);
+    letter-spacing: 0.1em;
+  }
+
+  /* ============================================
+     BOOT SCREEN — finto avvio gioco
+     ============================================ */
+  .boot-screen {
+    padding: 60px 40px;
+    background: #000;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    color: var(--ocra-light);
+    line-height: 1.4;
+  }
+
+  .boot-line {
+    margin-bottom: 6px;
+  }
+
+  .boot-line.dim { color: var(--stone-mid); }
+  .boot-line.bright { color: var(--white-text); }
+  .boot-line.error { color: var(--blood-bright); }
+
+  .blink {
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .ascii-box {
+    margin: 30px auto;
+    text-align: center;
+    color: var(--ocra);
+    white-space: pre;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .ascii-title {
+    text-align: center;
+    color: var(--sand);
+    margin: 40px 0 20px;
+  }
+
+  .title-main {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(18px, 4vw, 32px);
+    color: var(--sand);
+    text-shadow:
+      2px 2px 0 var(--blood),
+      4px 4px 0 var(--bg-deep);
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .title-sub {
+    font-family: 'VT323', monospace;
+    font-size: 26px;
+    color: var(--ocra-light);
+    margin-top: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  .credits {
+    margin-top: 50px;
+    text-align: center;
+    color: var(--stone-light);
+    font-size: 22px;
+    line-height: 1.6;
+  }
+
+  .credits .bright { color: var(--ocra-light); }
+
+  .press-start {
+    margin-top: 40px;
+    text-align: center;
+    color: var(--verb-yellow);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+  }
+
+  .press-start a {
+    color: var(--verb-yellow);
+    text-decoration: none;
+    border: 2px solid var(--verb-yellow);
+    padding: 12px 24px;
+    display: inline-block;
+    background: #000;
+    cursor: pointer;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  .press-start a:hover {
+    background: var(--verb-yellow);
+    color: #000;
+    animation: none;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* ============================================
+     SCENE SCREEN — la "scena" del gioco
+     ============================================ */
+  .scene-screen {
+    background: #000;
+  }
+
+  .scene-bar {
+    background: var(--bg-night);
+    color: var(--ocra-light);
+    padding: 6px 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    border-bottom: 1px solid var(--stone-dark);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.1em;
+  }
+
+  /* SCENA: ricostruita con CSS — Zattere di notte */
+  .scene {
+    height: 360px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      180deg,
+      var(--sky-night) 0%,
+      var(--sky-night) 40%,
+      var(--laguna) 40%,
+      var(--bg-water) 65%,
+      var(--bg-water) 100%
+    );
+  }
+
+  /* Stelle */
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--sand);
+    box-shadow: 0 0 2px var(--sand);
+  }
+
+  /* Luna */
+  .moon {
+    position: absolute;
+    top: 30px;
+    right: 80px;
+    width: 32px;
+    height: 32px;
+    background: var(--paper);
+    border-radius: 50%;
+    box-shadow:
+      0 0 20px rgba(240, 216, 160, 0.4),
+      inset -6px -2px 0 var(--sand);
+  }
+
+  /* Skyline Giudecca all'orizzonte */
+  .skyline {
+    position: absolute;
+    top: 38%;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background:
+      /* campanile */
+      linear-gradient(to right,
+        transparent 0%, transparent 15%,
+        var(--bg-deep) 15%, var(--bg-deep) 17%,
+        transparent 17%, transparent 100%
+      ),
+      /* tetti */
+      linear-gradient(to right,
+        var(--stone-dark) 0%, var(--stone-dark) 100%
+      );
+    clip-path: polygon(
+      0 100%,
+      0 60%,
+      8% 60%, 8% 40%, 12% 40%, 12% 60%,
+      20% 60%, 20% 50%, 28% 50%, 28% 65%,
+      32% 65%, 32% 20%, 36% 20%, 36% 65%,
+      45% 65%, 45% 55%, 55% 55%, 55% 70%,
+      62% 70%, 62% 45%, 68% 45%, 68% 70%,
+      78% 70%, 78% 55%, 88% 55%, 88% 65%,
+      100% 65%, 100% 100%
+    );
+  }
+
+  /* Riflessi sull'acqua */
+  .reflection {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 8px,
+      rgba(240, 216, 160, 0.08) 8px,
+      rgba(240, 216, 160, 0.08) 10px
+    );
+  }
+
+  .reflection::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(184, 132, 42, 0.1) 0px,
+      rgba(184, 132, 42, 0.1) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+  }
+
+  /* Fondamenta in primo piano */
+  .ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background:
+      linear-gradient(180deg,
+        var(--stone-mid) 0%,
+        var(--stone-dark) 100%
+      );
+    box-shadow: inset 0 4px 0 var(--stone-light);
+  }
+
+  /* Pietre della fondamenta — pattern */
+  .ground::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, var(--bg-deep) 1px, transparent 1px),
+      linear-gradient(0deg, var(--bg-deep) 1px, transparent 1px);
+    background-size: 40px 20px;
+    opacity: 0.4;
+  }
+
+  /* Briccola — palo nell'acqua */
+  .bricola {
+    position: absolute;
+    bottom: 32%;
+    width: 8px;
+    height: 80px;
+    background: linear-gradient(180deg, var(--stone-light), var(--stone-dark));
+    box-shadow: 2px 0 0 var(--bg-deep);
+  }
+  .bricola.b1 { left: 15%; }
+  .bricola.b2 { left: 22%; bottom: 28%; height: 70px; }
+  .bricola.b3 { left: 80%; height: 90px; }
+
+  /* Lanterna */
+  .lantern {
+    position: absolute;
+    top: 35%;
+    left: 65%;
+    width: 16px;
+    height: 24px;
+    background: var(--stone-dark);
+    box-shadow: 0 0 30px rgba(240, 192, 32, 0.5);
+  }
+  .lantern::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: var(--verb-yellow);
+    box-shadow: 0 0 12px var(--verb-yellow);
+    animation: flicker 2s infinite;
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+    75% { opacity: 0.9; }
+  }
+
+  /* SPRITE FRA CELESTINO */
+  .sprite-celestino {
+    position: absolute;
+    bottom: 28%;
+    left: 38%;
+    width: 56px;
+    height: 96px;
+    z-index: 5;
+  }
+
+  /* Frate costruito con CSS — pixel-ish */
+  .sprite-celestino .head {
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 28px;
+    height: 28px;
+    background: #d4a878;
+    border: 2px solid var(--bg-deep);
+  }
+  .sprite-celestino .head::before {
+    /* tonsura/cappuccio */
+    content: "";
+    position: absolute;
+    top: -4px; left: -4px; right: -4px;
+    height: 14px;
+    background: var(--paper);
+    border: 2px solid var(--bg-deep);
+  }
+  .sprite-celestino .head::after {
+    /* occhi */
+    content: "··";
+    position: absolute;
+    top: 10px;
+    left: 6px;
+    color: var(--bg-deep);
+    font-size: 14px;
+    letter-spacing: 6px;
+    line-height: 1;
+  }
+  .sprite-celestino .body {
+    position: absolute;
+    top: 28px;
+    left: 8px;
+    width: 40px;
+    height: 50px;
+    background: var(--paper);
+    border: 2px solid var(--bg-deep);
+  }
+  .sprite-celestino .belt {
+    position: absolute;
+    top: 50px;
+    left: 8px;
+    width: 40px;
+    height: 4px;
+    background: var(--stone-dark);
+  }
+  .sprite-celestino .feet {
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    width: 32px;
+    height: 8px;
+    background: var(--bg-deep);
+  }
+  .sprite-celestino .bottle {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 10px;
+    height: 18px;
+    background: var(--blood);
+    border: 2px solid var(--bg-deep);
+  }
+  .sprite-celestino .bottle::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 2px;
+    width: 6px;
+    height: 4px;
+    background: var(--bg-deep);
+  }
+
+  /* Indicatore "parla" sopra Celestino */
+  .speech-indicator {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--verb-yellow);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    animation: bounce 0.8s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-4px); }
+  }
+
+  /* ============================================
+     DIALOG BOX — il testo del personaggio
+     ============================================ */
+  .dialog-box {
+    background: #000;
+    padding: 16px 20px;
+    border-top: 2px solid var(--ocra);
+    min-height: 80px;
+    position: relative;
+  }
+
+  .dialog-speaker {
+    color: var(--verb-yellow);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .dialog-text {
+    color: var(--white-text);
+    font-family: 'VT323', monospace;
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .dialog-cursor {
+    display: inline-block;
+    color: var(--verb-yellow);
+    animation: blink 0.7s infinite;
+  }
+
+  .dialog-next {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    color: var(--verb-yellow);
+    font-size: 24px;
+    animation: bounce 0.8s infinite;
+  }
+
+  /* Audio player retro */
+  .audio-retro {
+    background: var(--bg-night);
+    border-top: 1px solid var(--stone-dark);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'VT323', monospace;
+  }
+
+  .audio-retro-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--verb-yellow);
+    border: 2px solid #000;
+    color: #000;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0 var(--bg-deep);
+  }
+  .audio-retro-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+
+  .audio-retro-label {
+    color: var(--ocra-light);
+    font-size: 20px;
+    flex: 1;
+  }
+
+  .audio-retro-meter {
+    display: flex;
+    gap: 2px;
+    height: 16px;
+    align-items: flex-end;
+  }
+  .audio-retro-meter span {
+    width: 4px;
+    background: var(--verb-yellow);
+  }
+  .audio-retro-meter span:nth-child(1) { height: 30%; }
+  .audio-retro-meter span:nth-child(2) { height: 60%; }
+  .audio-retro-meter span:nth-child(3) { height: 90%; }
+  .audio-retro-meter span:nth-child(4) { height: 50%; }
+  .audio-retro-meter span:nth-child(5) { height: 75%; }
+  .audio-retro-meter span:nth-child(6) { height: 40%; }
+  .audio-retro-meter span:nth-child(7) { height: 85%; }
+  .audio-retro-meter span:nth-child(8) { height: 25%; }
+
+  /* ============================================
+     VERB UI — i comandi SCUMM
+     ============================================ */
+  .verb-ui {
+    background: var(--bg-night);
+    border-top: 2px solid var(--ocra);
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 200px;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .verbs-col {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .verb {
+    color: var(--verb-yellow);
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    padding: 4px 8px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: color 0.1s;
+    line-height: 1;
+  }
+  .verb:hover {
+    color: var(--selected);
+  }
+  .verb.active {
+    color: var(--selected);
+  }
+
+  .inventory {
+    background: #000;
+    border: 2px solid var(--ocra);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .inventory-label {
+    color: var(--ocra-light);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  .inventory-slots {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    flex: 1;
+    align-items: center;
+  }
+
+  .slot {
+    aspect-ratio: 1;
+    background: var(--bg-night);
+    border: 1px solid var(--stone-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--ocra-light);
+    position: relative;
+  }
+
+  .slot.filled {
+    background: var(--blood);
+    border-color: var(--blood-bright);
+    color: var(--sand);
+    box-shadow: inset -2px -2px 0 rgba(0,0,0,0.3),
+                inset 2px 2px 0 rgba(255,255,255,0.1);
+  }
+
+  /* ============================================
+     ANSWER INPUT
+     ============================================ */
+  .command-bar {
+    background: #000;
+    border-top: 1px solid var(--stone-dark);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'VT323', monospace;
+  }
+
+  .command-prompt {
+    color: var(--verb-yellow);
+    font-size: 22px;
+  }
+
+  .command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--white-text);
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    outline: none;
+  }
+
+  .command-input::placeholder {
+    color: var(--stone-mid);
+  }
+
+  .command-btn {
+    background: var(--verb-yellow);
+    color: #000;
+    border: none;
+    padding: 6px 14px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 var(--bg-deep);
+    letter-spacing: 0.1em;
+  }
+
+  .command-btn:hover { background: var(--sand); }
+  .command-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+
+  /* ============================================
+     PUZZLE SOLVED SCREEN
+     ============================================ */
+  .solved-screen {
+    background: #000;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solved-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(240, 192, 32, 0.15), transparent 40%),
+      radial-gradient(circle at 70% 60%, rgba(184, 132, 42, 0.1), transparent 50%);
+    pointer-events: none;
+  }
+
+  .solved-badge {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--blood-bright);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    margin-bottom: 30px;
+    animation: blink-slow 2s ease-in-out infinite;
+  }
+  @keyframes blink-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .fragment-reveal {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(32px, 7vw, 56px);
+    color: var(--sand);
+    text-shadow:
+      3px 3px 0 var(--blood),
+      6px 6px 0 var(--bg-deep),
+      0 0 30px rgba(240, 192, 32, 0.5);
+    letter-spacing: 0.15em;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .fragment-caption {
+    font-family: 'VT323', monospace;
+    color: var(--ocra-light);
+    font-size: 24px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Mini-map ASCII */
+  .ascii-map {
+    margin: 30px auto;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    line-height: 1.1;
+    color: var(--ocra);
+    display: inline-block;
+    background: var(--bg-night);
+    padding: 16px 24px;
+    border: 2px solid var(--stone-dark);
+    white-space: pre;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ascii-map .done { color: var(--verb-yellow); }
+  .ascii-map .current { color: var(--blood-bright); animation: blink 1s infinite; }
+  .ascii-map .locked { color: var(--stone-mid); }
+
+  .next-quest {
+    background: var(--bg-night);
+    border: 2px solid var(--ocra);
+    padding: 16px 20px;
+    margin: 30px auto 0;
+    max-width: 480px;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+  }
+
+  .next-quest-header {
+    color: var(--verb-yellow);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+  }
+
+  .next-quest-location {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--sand);
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .next-quest-hint {
+    color: var(--white-text);
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  .continue-prompt {
+    margin-top: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .continue-btn {
+    background: #000;
+    border: 2px solid var(--verb-yellow);
+    color: var(--verb-yellow);
+    padding: 14px 32px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.2em;
+  }
+  .continue-btn:hover {
+    background: var(--verb-yellow);
+    color: #000;
+  }
+
+  @media (max-width: 700px) {
+    .game-window { margin: 0 8px 40px; }
+    .verb-ui {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .inventory { grid-column: 1 / -1; }
+    .scene { height: 280px; }
+    .boot-screen { padding: 30px 20px; font-size: 18px; }
+    .title-main { font-size: 14px; }
+    .ascii-box, .ascii-map { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a href="#boot">▶ BOOT</a>
+  <a href="#scene">▶ SCENE</a>
+  <a href="#solved">▶ SOLVED</a>
+</nav>
+
+<!-- =========================================
+     1. BOOT SCREEN — il "gioco" si avvia
+     ========================================= -->
+<div class="game-window" id="boot">
+  <div class="section-label">▼ SCHERMATA INIZIALE — IL GIOCO SI AVVIA ▼</div>
+
+  <div class="boot-screen">
+    <div class="boot-line dim">SCUMM v5.1.42 — Loading...</div>
+    <div class="boot-line dim">Reading manuscript from disk A:\</div>
+    <div class="boot-line dim">Checking memory... 640K OK</div>
+    <div class="boot-line dim">Detecting sound card... [PC Speaker]</div>
+    <div class="boot-line error">WARNING: file corrupted — anno 1297</div>
+    <div class="boot-line bright">Recovering data from <span style="color:var(--verb-yellow)">monastery_torcello.dat</span></div>
+    <div class="boot-line dim">.</div>
+    <div class="boot-line dim">..</div>
+    <div class="boot-line dim">...</div>
+    <div class="boot-line bright">OK — ready to play <span class="blink">█</span></div>
+
+<div class="ascii-box">
+╔════════════════════════════════════════════════╗
+║                                                ║
+║                                                ║
+║                                                ║
+║                                                ║
+╚════════════════════════════════════════════════╝
+</div>
+
+    <div class="ascii-title">
+      <div class="title-main">LE SETTE ÀNCORE</div>
+      <div class="title-main" style="font-size: clamp(12px, 2.5vw, 18px); margin-top: 12px;">DELLA SERENISSIMA</div>
+      <div class="title-sub">~ A SCUMM ADVENTURE ~</div>
+    </div>
+
+    <div class="credits">
+      © Anno Domini MCCXCVII<br>
+      <span class="bright">Designed by FRA CELESTINO da Torcello</span><br>
+      <span style="color:var(--stone-mid); font-size:18px;">(in stato di ubriachezza variabile)</span><br><br>
+      Music by <span class="bright">il vento della laguna</span><br>
+      Graphics by <span class="bright">la luna sopra Murano</span>
+    </div>
+
+    <div class="press-start">
+      <a href="#scene">▶ PRESS START TO BEGIN ◀</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================================
+     2. SCENE SCREEN — il gioco vero e proprio
+     ========================================= -->
+<div class="game-window" id="scene">
+  <div class="section-label">▼ SCENA DI GIOCO — ANCORA III: LE ZATTERE, NOTTE ▼</div>
+
+  <div class="scene-screen">
+
+    <div class="scene-bar">
+      <span>SCENE 03 — ZATTERE BY NIGHT</span>
+      <span>QUEST: TROVA IL TERZO SEGNO</span>
+    </div>
+
+    <!-- LA SCENA -->
+    <div class="scene">
+      <!-- Stelle -->
+      <div class="star" style="top:10%; left:15%;"></div>
+      <div class="star" style="top:18%; left:30%;"></div>
+      <div class="star" style="top:8%; left:48%;"></div>
+      <div class="star" style="top:22%; left:60%;"></div>
+      <div class="star" style="top:14%; left:75%;"></div>
+      <div class="star" style="top:25%; left:88%;"></div>
+      <div class="star" style="top:6%; left:22%;"></div>
+      <div class="star" style="top:16%; left:90%;"></div>
+
+      <!-- Luna -->
+      <div class="moon"></div>
+
+      <!-- Skyline -->
+      <div class="skyline"></div>
+
+      <!-- Briccole nell'acqua -->
+      <div class="bricola b1"></div>
+      <div class="bricola b2"></div>
+      <div class="bricola b3"></div>
+
+      <!-- Riflessi sull'acqua -->
+      <div class="reflection"></div>
+
+      <!-- Lanterna -->
+      <div class="lantern"></div>
+
+      <!-- Fondamenta -->
+      <div class="ground"></div>
+
+      <!-- FRA CELESTINO SPRITE -->
+      <div class="sprite-celestino">
+        <div class="speech-indicator">▼</div>
+        <div class="head"></div>
+        <div class="body"></div>
+        <div class="belt"></div>
+        <div class="bottle"></div>
+        <div class="feet"></div>
+      </div>
+    </div>
+
+    <!-- DIALOG BOX -->
+    <div class="dialog-box">
+      <div class="dialog-speaker">FRA CELESTINO:</div>
+      <div class="dialog-text">
+        "Ah, le Zattere! Qua mi venia col confratel Fra Bortolo
+        a vardar le tose che passava co' la fresca dea sera...
+        ma adesso scoltème: la marea che vien da soto la Zueca
+        la conta <span style="color:var(--verb-yellow)">sète volte</span>.<span class="dialog-cursor">█</span>"
+      </div>
+      <div class="dialog-next">▼</div>
+    </div>
+
+    <!-- AUDIO RETRO -->
+    <div class="audio-retro">
+      <button class="audio-retro-btn">▶</button>
+      <span class="audio-retro-label">► VOICE.WAV — Fra Celestino [0:12 / 0:38]</span>
+      <div class="audio-retro-meter">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- VERB UI -->
+    <div class="verb-ui">
+      <div class="verbs-col">
+        <div class="verb">► Guarda</div>
+        <div class="verb active">► Parla a</div>
+        <div class="verb">► Apri</div>
+      </div>
+      <div class="verbs-col">
+        <div class="verb">► Prendi</div>
+        <div class="verb">► Usa</div>
+        <div class="verb">► Bevi con</div>
+      </div>
+      <div class="verbs-col">
+        <div class="verb">► Esamina</div>
+        <div class="verb">► Conta</div>
+        <div class="verb">► Mostra</div>
+      </div>
+      <div class="inventory">
+        <div class="inventory-label">FRAMMENTI</div>
+        <div class="inventory-slots">
+          <div class="slot filled">I</div>
+          <div class="slot filled">II</div>
+          <div class="slot">?</div>
+          <div class="slot">?</div>
+          <div class="slot">?</div>
+          <div class="slot">?</div>
+          <div class="slot">?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMAND BAR -->
+    <div class="command-bar">
+      <span class="command-prompt">&gt;</span>
+      <input type="text" class="command-input" placeholder="digita la parola del frammento...">
+      <button class="command-btn">INVIO</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =========================================
+     3. SOLVED SCREEN — puzzle risolto
+     ========================================= -->
+<div class="game-window" id="solved">
+  <div class="section-label">▼ FRAMMENTO RISOLTO — TRANSIZIONE ▼</div>
+
+  <div class="solved-screen">
+
+    <div class="solved-badge">★ PUZZLE SOLVED ★</div>
+
+    <div class="fragment-reveal">MAREA</div>
+    <div class="fragment-caption">— il terzo segno è vostro —</div>
+
+<div class="ascii-map">
+       <span class="done">[I]</span>──<span class="done">[II]</span>──<span class="current">[III]</span>  <span class="locked">[IV]</span>  <span class="locked">[V]</span>  <span class="locked">[VI]</span>  <span class="locked">[VII]</span>
+        ▲                                       
+   STAZIONE                              FOND. NOVE
+</div>
+
+    <div class="next-quest">
+      <div class="next-quest-header">▶ PROSSIMA MISSIONE</div>
+      <div class="next-quest-location">PONTE DELL'ACCADEMIA</div>
+      <div class="next-quest-hint">
+        Là dove il legno regge ciò che la pietra non poté.<br>
+        Cercate il quarto segno prima che il sole tocchi i tetti.
+      </div>
+    </div>
+
+    <div class="continue-prompt">
+      <a href="#boot" class="continue-btn">▶ CONTINUE</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

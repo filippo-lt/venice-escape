@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* ============================================
+   Design tokens — Venice Escape
+   Palette estratta da docs/mood_scumm.html
+   (VGA 256, ocra/seppia, MI1 / Indy FOA)
+   ============================================ */
+@theme {
+  /* sfondi profondi */
+  --color-bg-deep: #1a0f08;
+  --color-bg-night: #2a1810;
+  --color-bg-water: #3d2a18;
+
+  /* pietra */
+  --color-stone-dark: #4a3520;
+  --color-stone-mid: #6b4a2a;
+  --color-stone-light: #8b6536;
+
+  /* ocra / sabbia */
+  --color-ocra: #b8842a;
+  --color-ocra-light: #d4a541;
+  --color-sand: #e8c878;
+  --color-paper: #f0d8a0;
+  --color-highlight: #ffe8b0;
+
+  /* rosso veneziano */
+  --color-blood: #8b1a1a;
+  --color-blood-bright: #c42424;
+
+  /* notte / laguna */
+  --color-sky-night: #2a3548;
+  --color-laguna: #3a5560;
+
+  /* testo / accenti */
+  --color-white-text: #f8e8c0;
+  --color-verb-yellow: #f0c020;
+  --color-selected: #ffffff;
+
+  /* palette manoscritto (Fase 2) */
+  --color-carta: #f4e4b8;
+  --color-acquerello: #6b8aa0;
+  --color-inchiostro: #4a3050;
+  --color-nastro: #c42424;
+
+  /* font stack — alias verso le CSS variables definite dal layout
+     via next/font (Press Start 2P, VT323, Caveat, EB Garamond) */
+  --font-pixel: var(--font-press-start), "Courier New", monospace;
+  --font-mono: var(--font-vt323), "Courier New", monospace;
+  --font-hand: var(--font-caveat), cursive;
+  --font-manuscript: var(--font-garamond), Georgia, serif;
+}
+
+html,
+body {
+  background: #000;
+  color: var(--color-white-text);
+  font-family: var(--font-mono);
+  font-size: 22px;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* CRT scanlines globali — applicabili a un wrapper via className */
+.crt::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.crt::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 199;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes pulse-scumm {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+.animate-pulse-scumm {
+  animation: pulse-scumm 1.5s ease-in-out infinite;
+}
