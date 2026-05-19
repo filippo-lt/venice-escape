@@ -37,7 +37,7 @@ class MemoryStorage {
 
 // @ts-expect-error — montiamo localStorage/window per il branch isBrowser
 globalThis.localStorage = new MemoryStorage();
-// @ts-expect-error
+// @ts-expect-error — montiamo window=globalThis per attivare isBrowser()
 globalThis.window = globalThis;
 
 beforeEach(() => {
