@@ -136,6 +136,64 @@ ADMIN / GAME MASTER
 
 ---
 
+## File di build per ancora (`ancora_N.md`)
+
+Oltre ai cinque file di knowledge (`01`–`05`, filosofia trasversale), ogni
+ancora ha un proprio **file di build self-contained** che funge da "ticket"
+per l'implementazione (es. da dare a Claude Code).
+
+```
+KNOWLEDGE (01-05)            BUILD SPEC (ancora_N.md)
+─────────────────            ────────────────────────
+filosofia, lore, regole      contenuto concreto di UNA ancora
+trasversali alle 7 ancore    pronto da implementare
+
+cambiano di rado             è l'unità di lavoro per CC
+
+NON si danno a CC ogni       QUESTO si dà a CC:
+volta (troppo rumore)        "implementa /ancora/N da qui"
+```
+
+**Template:** `_TEMPLATE_ancora_N.md` (copiare e riempire i `<<placeholder>>`).
+
+**Struttura di ogni `ancora_N.md`:**
+```
+0.  Istruzioni per Claude Code (anti-spoiler, mobile-first, path)
+1.  Asset audio main + trascrizione
+2.  Testi a schermo (Archivista, traduzione, dove cercare, input)  [CLIENT]
+3.  Verifica risposta → hash SHA-256                                [CLIENT]
+4.  Transizione /transizione/N                                      [CLIENT]
+5.  Soluzione + struttura due livelli                               [GM-ONLY]
+6.  Hint progressivi                                                [GM-ONLY]
+7.  Easter egg / side quest (se presente)
+8.  Prompt per asset grafici
+9.  Audio extended cut (Fase 2)
+10. Note di campo / da fare
++   Appendice: script generazione hash
+```
+
+**Regola anti-spoiler (CRITICA):** le risposte degli enigmi NON vanno mai
+in chiaro nel sorgente committato. La verifica è client-side ma per
+**confronto di hash SHA-256** della risposta normalizzata. Le soluzioni in
+chiaro vivono solo nei file di progetto (non nel repo) e in `/soluzioni`.
+
+**Pipeline di normalizzazione standard** (prima di hashare):
+`trim → toLowerCase → rimuovi accenti → rimuovi articolo iniziale →
+rimuovi sostantivo finale ridondante → collassa spazi`.
+
+Stato build-spec:
+```
+ancora_1.md   ✓ DEFINITA (manca solo sopralluogo facciata)
+ancora_2.md   ✗ da creare (Santa Croce — l'origine, i pozzi)
+ancora_3.md   ✗ da creare (Zattere — l'acqua, la marea)
+ancora_4.md   ✗ da creare (Accademia — l'impermanenza)
+ancora_5.md   ✗ da creare (Rialto — il mercato, il numero)
+ancora_6.md   ✗ da creare (Strada Nuova — ciò che è distrutto)
+ancora_7.md   ✗ da creare (Fondamente Nove — lo sguardo alle origini)
+```
+
+---
+
 ## UI principale durante il gioco — semplificata per la calle
 
 Vincoli reali dell'uso in mobilità:
@@ -253,6 +311,20 @@ EXTERNAL          "varda la luna stanote"          Reazione a un dettaglio
 Bonus: alcuni indizi possono essere triggerati da cose **reali** che il gruppo vede a Venezia. Fra Celestino dice una frase enigmatica → il gruppo deve trovare un dettaglio nella città vera → tap su un elemento del sito per "registrare" la scoperta.
 
 Esempio: *"in sti caleti se nasconde un omo de pietra che varda in alto"* → il gruppo cerca, trova una statua o un bassorilievo → tap su un'icona "L'HO VISTO" → indizio registrato.
+
+### Easter egg già definiti
+
+```
+ANCORA 1 — "EL CRISTO CHE VARDA"
+─────────────────────────────────
+Trigger: lo sprite del Cristo in cima alla facciata
+  (nella scena pixel art) è tappabile, NON evidenziato.
+  È la stessa figura che il gruppo identifica per l'enigma.
+Feedback: "★ INDIZIO TROVATO ★" + localStorage "cristo-soglia"
+Sblocca (Fase 2): nel /segreti, il segmento extended cut
+  dell'episodio "nel Cristo" (Mick e i predicatori) +
+  entry glossario dedicata. Payoff personalizzato sul gruppo.
+```
 
 ---
 

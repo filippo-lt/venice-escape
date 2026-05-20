@@ -75,12 +75,15 @@ Il gioco ha **due voci distinte**, mai sovrapposte. Il **contrasto tra le due è
 
 ### Esempi di tono — confronto con la versione precedente
 
-**Apertura (Ancora 1) — registro medio, ironico ma con dignità:**
+**Apertura (Ancora 1) — registro medio, ironico ma con dignità — VERSIONE DEFINITIVA:**
 
-> *"Mòneghi mii, ascoltè ben. Mi son Fra Celestino, e ve parlo da soto le pietre de la nostra Serenissima. Vedo che gavè un fioi che se marida — bon, prima che la mugiera ghe taja le ale, fémoghe vedèr Venezia come se deve! Gh'è 'na profezia da risolvere, e gh'è anca 'na tradizion da rispetar. Cominciemo!"*
+> *"Mòneghi mii! Mi son Fra Celestino, e ve parlo da soto le pietre dea Serenissima. Vedo che gavè un fioi che se marida — ostrega, prima che la mugiera ghe taja le ale, fémoghe veder Venezia come se deve! La prima àncora xe qua, sulla soglia. Alzè i oci a la ciesa bianca: 'na figura sola sta in cima a tuto, col brazzo levà. La risposta, fioi, la trovè nel Cristo. Varda ben — ti che ti sa."*
 >
 > **Traduzione dell'Archivista (composto):**
-> *"Ragazzi miei, ascoltate bene. Sono Fra Celestino, e vi parlo da sotto le pietre della nostra Serenissima. Vedo che avete un amico che si sposa — bene, prima che la moglie gli tagli le ali, facciamogli vedere Venezia come si deve! C'è una profezia da risolvere, e c'è anche una tradizione da rispettare. Cominciamo!"*
+> *"Ragazzi miei! Sono Fra Celestino, e vi parlo da sotto le pietre della nostra Serenissima. Vedo che avete un amico che si sposa — perbacco, prima che la moglie gli tagli le ali, facciamogli vedere Venezia come si deve! La prima ancora è qui, sulla soglia. Alzate gli occhi alla chiesa bianca: una sola figura sta in cima a tutto, con il braccio alzato. La risposta, ragazzi, la troverete nel Cristo. Guardate bene — tu che sai."*
+> *[Nota dell'Archivista: l'espressione "nel Cristo" è una formula devozionale piuttosto comune nel veneziano antico. Non vedo cosa ci sia da ridere.]*
+
+**Gancio comico a lungo termine:** l'aggancio "nel Cristo" è un inside joke del gruppo (vedi file 05). L'Archivista, ignaro, lo tratta come formula devozionale e nelle ancore successive può tornarci sopra sempre più perplesso senza mai capire. Filo comico che attraversa l'intero arco dell'Archivista.
 
 **Esempio intermedio (Ancora 3, Zattere) — più ridanciano:**
 
@@ -134,6 +137,7 @@ Le **modalità seria e alticcia** sono i due estremi. La modalità **burlona** �
 | *Bocca de leon* | Bocca di leone | Cassetta delle denunce |
 | *Fondamenta, riva* | Sponda | Geografia acquatica |
 | *Bricola* | Palo di legno nella laguna | Simbolo lagunare |
+| *Nel Cristo (andar ~)* | (inside joke gruppo) | Augurio dissacrante-affettuoso, vedi file 05. Da usare SOLO come aggancio deniable in Ancora 1 |
 
 ### Regole per la scrittura del veneziano
 

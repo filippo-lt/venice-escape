@@ -92,7 +92,7 @@ Le ancore non sono distribuite a caso: tracciano il **percorso del pellegrino me
 
 | # | Zona | Tema | Frammento prodotto |
 |---|------|------|---------------------|
-| 1 | Stazione / Scalzi | La soglia, l'ingresso | (da definire) |
+| 1 | Stazione / Scalzi | La soglia, l'ingresso | Lettera ◆₁ (DEFINITA — vedi sotto) |
 | 2 | Santa Croce | L'origine, i pozzi | (da definire) |
 | 3 | Zattere | L'acqua, la marea | (da definire) |
 | 4 | Ponte dell'Accademia | L'impermanenza, ciò che regge | (da definire) |
@@ -104,7 +104,20 @@ Le ancore non sono distribuite a caso: tracciano il **percorso del pellegrino me
 
 Ogni ancora restituisce un **frammento** — può essere una parola, un numero, un simbolo, una direzione. Sette frammenti, assemblati al finale, rivelano la destinazione conclusiva (luogo del brindisi finale).
 
+**Meccanica decisa (Ancora 1+):** ogni ancora produce **una lettera**. Le sette lettere, assemblate al finale, compongono il **nome del luogo della cena**. Le lettere specifiche sono da fissare quando il luogo della cena sarà scelto; fino ad allora i frammenti restano placeholder posizionali (◆₁ … ◆₇).
+
 L'interpretazione finale dei frammenti spetta al **Lettore Eletto**.
+
+### Ancora 1 — LA SOGLIA (Scalzi) — DEFINITA
+
+- **Luogo:** sagrato/riva davanti alla Chiesa degli Scalzi (Santa Maria di Nazareth), 30 secondi dall'uscita della stazione. Spazio pubblico, gratuito, sempre visibile.
+- **Enigma (riconoscimento iconografico, NON conteggio):** sulla facciata barocca ci sono molte statue su tre registri (rumore visivo voluto). Una sola figura domina isolata in cima al frontone, braccio alzato contro il cielo: il **Cristo Benedicente/Redentore**.
+- **Livello 1 (gruppo):** individua la figura isolata in cima.
+- **Livello 2 (Lettore Eletto):** riconosce CHI è (il Cristo) e il senso — sta sopra tutti perché giudica chi varca la soglia della città.
+- **Risposta:** `cristo` (varianti: il cristo, cristo benedicente, cristo redentore, redentore, gesù, cristo risorto).
+- **Inside joke integrato:** la frase "nel Cristo" (vedi file 05, episodio di Mick) è agganciata in modo *deniable* nella main quest. Battesimo perfetto: il primo enigma parla già la lingua del gruppo.
+- **Nota di campo:** richiede sopralluogo per confermare che il Cristo sia ben visibile dal sagrato. Il vecchio meccanismo "conta le statue" è stato SCARTATO perché la facciata ha ~12 statue ambigue → fragile per un enigma tutorial.
+- **Build spec:** il contenuto implementativo completo di questa ancora (testi a schermo, hash risposta, prompt asset, hint, extended cut) è in `ancora_1.md`. Ogni ancora ha il suo file di build; template in `_TEMPLATE_ancora_N.md`. Vedi `04_website_architecture.md` § "File di build per ancora".
 
 ---
 
