@@ -108,15 +108,46 @@ export const ANCHORS: readonly Anchor[] = [
   },
   {
     id: 2,
-    slug: "santa-croce",
-    location: "Santa Croce",
-    theme: "L'origine, i pozzi",
-    fragment: "TODO",
-    acceptedHashes: [],
+    slug: "san-giacomo-orio",
+    location: "San Giacomo dell'Orio",
+    theme: "L'origine, i pozzi — e ciò che è stato cancellato",
+    fragment: "◆₂",
+    // Forme post-normalizzazione: leone, leon, leone di san marco,
+    // leon de san marco, leone marciano, leon marciano, san marco.
+    // (Le varianti con articolo "il leone" collassano già su "leone".)
+    acceptedHashes: [
+      "6dcf3e832f437961fa133fa47279e074014433e8118bab8feb9cd9696a2190d1",
+      "1534cf2af76ecd84b803010b700287c00446599c68e8d81befa9c569f03e64dd",
+      "60df64fded0d811495f3c65f84b06a45c9fa6bcb660e30d95b3b0fe5e393c10b",
+      "25cbcde704e6dc2ddbb6b3550d9ad945b2a690e5b823fdbb7fee4b9bc59cfac5",
+      "bbc248adc638b6877f1e7ad8fbec4961831d0e3b7f0a221a61a215a87f0db151",
+      "dcc0f343c26a993ae0188f4e08d6ed50754f11309ebd9b49fb945327f5940d1e",
+      "b800d1dfcf33bd7f649aa87ed231a6fa7c1f6b8ecb4cde414bf6049c270a457d",
+    ],
     href: "/ancora/2",
-    audioMain: "/audio/main/02.mp3",
-    scene: "/images/scenes/02.webp",
-    nextHint: "Verso l'acqua larga, dove la Zueca guarda la città.",
+    audioMain: "/audio/main/ancora_2.mp3",
+    scene: "/images/scenes/ancora_2.webp",
+    archivistaIntro:
+      "Secondo frammento. Fra Celestino ci conduce alle origini idriche della città — un tema, devo ammettere, di reale interesse storico. Il frate sembra però in vena di divagazioni personali. Traduco fedelmente, come d'obbligo.",
+    traduzione:
+      '"Ragazzi miei, siamo nel campo dove Venezia beveva — prima di tutto, prima degli acquedotti, qui si attingeva l\'acqua piovana dai pozzi. Guardate bene le vere: su una era scolpito il segno della Serenissima... ma qualcuno l\'ha portato via. (Indovinate voi chi è stato — gente che parla col naso.) Resta solo il cerchio vuoto. Cosa manca? Chi è sparito dalla pietra? Tu che sai — tu che qui ci sei stato..."',
+    archivistaNota:
+      "Nota dell'Archivista: il frate accenna a \"gente che parla col naso\" e si rivolge al Lettore Eletto con inattesa familiarità, come se conoscesse di persona chi ascolta. Formule retoriche, suppongo. Suppongo.",
+    doveCercare:
+      "Uno dei campi più antichi della città, raccolto attorno a un alto campanile in mattoni. Cercate le vere da pozzo in pietra: una di esse porta una ferita — un tondo svuotato, dove un tempo viveva un simbolo.",
+    hints: [
+      "Non contate le vere — cercate quella ferita. Una sola porta un cerchio vuoto nella pietra, dove un tempo c'era un'incisione.",
+      "Il segno cancellato era l'emblema della Repubblica di Venezia. Lo trovate ovunque in città: alato, con un libro tra le zampe. Che animale è?",
+      "Pensa a cosa fu cancellato da TUTTA Venezia quando cadde la Repubblica. L'animale simbolo di San Marco. Il nome basta.",
+    ],
+    nextHint:
+      "Fra Celestino già si volta verso l'acqua. Dice qualcosa sulle maree, sulle Zattere dove il legname scendeva dai monti — e sul primo spritz della giornata, a quanto pare. Verso le ZATTERE.",
+    easterEgg: {
+      id: "lion-sconduo",
+      // Tondo scalpellato sulla vera da pozzo, in basso a destra nella scena.
+      hitbox: { top: 63, left: 57, width: 14, height: 17 },
+      toast: "★ INDIZIO TROVATO ★",
+    },
   },
   {
     id: 3,
