@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# contenuti narrativi (contengono soluzioni in chiaro — NON committare)
+/contenuti
+
 # next.js
 /.next/
 /out/

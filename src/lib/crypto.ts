@@ -21,6 +21,22 @@ export function normalizeAnswer(input: string): string {
     .trim();
 }
 
+/**
+ * Normalizzazione "estesa" per le risposte alle ancore:
+ *  - normalizeAnswer (lowercase, no accenti, no punteggiatura, no spazi extra)
+ *  - rimuove articolo iniziale: il / lo / la / i / gli / le / l'
+ *  - rimuove sostantivo finale generico: statua/statue, figura/figure
+ *  - ricollassa eventuali spazi
+ *
+ * Es. "Il Cristo" → "cristo", "la statua del cristo" → "del cristo".
+ */
+export function normalizeAnchorAnswer(input: string): string {
+  let s = normalizeAnswer(input);
+  s = s.replace(/^(?:il|lo|la|i|gli|le|l)\s+/u, "");
+  s = s.replace(/\s+(?:statue|statua|figure|figura)$/u, "");
+  return s.replace(/\s+/g, " ").trim();
+}
+
 /** SHA-256 esadecimale di una stringa, lato client o lato Node. */
 export async function sha256(input: string): Promise<string> {
   const data = new TextEncoder().encode(input);
@@ -35,6 +51,11 @@ export async function hashAnswer(input: string): Promise<string> {
   return sha256(normalizeAnswer(input));
 }
 
+/** Come hashAnswer ma usa normalizeAnchorAnswer (articolo + sostantivo). */
+export async function hashAnchorAnswer(input: string): Promise<string> {
+  return sha256(normalizeAnchorAnswer(input));
+}
+
 /**
  * Verifica se una risposta utente corrisponde a una delle varianti
  * accettate per un enigma, identificate dai loro hash SHA-256.
@@ -45,5 +66,15 @@ export async function matchesAnyHash(
 ): Promise<boolean> {
   if (!userInput.trim()) return false;
   const h = await hashAnswer(userInput);
+  return acceptedHashes.includes(h);
+}
+
+/** Variante per le ancore: usa la normalizzazione estesa. */
+export async function matchesAnchorHash(
+  userInput: string,
+  acceptedHashes: readonly string[],
+): Promise<boolean> {
+  if (!userInput.trim()) return false;
+  const h = await hashAnchorAnswer(userInput);
   return acceptedHashes.includes(h);
 }

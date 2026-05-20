@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 py-10">
@@ -62,12 +64,12 @@ export default function Home() {
 
         {/* CTA */}
         <div className="mt-10 text-center">
-          <button
-            type="button"
-            className="animate-pulse-scumm inline-block border-2 border-verb-yellow bg-black px-6 py-3 font-pixel text-[10px] tracking-widest text-verb-yellow hover:bg-verb-yellow hover:text-black focus:outline-none focus:ring-2 focus:ring-verb-yellow sm:text-xs"
+          <Link
+            href="/ancora/1"
+            className="animate-pulse-scumm inline-block min-h-11 border-2 border-verb-yellow bg-black px-6 py-3 font-pixel text-[10px] tracking-widest text-verb-yellow hover:bg-verb-yellow hover:text-black focus:outline-none focus:ring-2 focus:ring-verb-yellow sm:text-xs"
           >
             ▶ PRESS START TO BEGIN ◀
-          </button>
+          </Link>
         </div>
 
         {/* mini palette per QA visivo durante M1 */}

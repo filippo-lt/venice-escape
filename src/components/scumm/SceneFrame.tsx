@@ -33,7 +33,7 @@ export function SceneFrame({
         className="relative h-[220px] w-full overflow-hidden bg-sky-night sm:h-[280px]"
         style={{ imageRendering: "pixelated" }}
       >
-        {src ? (
+        {src && (
           // Tag <img> intenzionale: l'ottimizzatore di next/image
           // ricampiona la pixel art rovinandola. Useremo asset .webp
           // statici già dimensionati per il viewport mobile.
@@ -44,9 +44,8 @@ export function SceneFrame({
             className="h-full w-full object-cover"
             style={{ imageRendering: "pixelated" }}
           />
-        ) : (
-          children
         )}
+        {children}
       </div>
     </section>
   );
