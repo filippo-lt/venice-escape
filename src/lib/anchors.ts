@@ -80,7 +80,7 @@ export const ANCHORS: readonly Anchor[] = [
     ],
     href: "/ancora/1",
     // Placeholder finché non arriva l'MP3 reale (vedi contenuti/ancora_1).
-    audioMain: "/audio/main/ancora_1.wav",
+    audioMain: "/audio/main/ancora_1.mp3",
     scene: "/images/scenes/ancora_1.webp",
     archivistaIntro:
       "Trasmetto il primo frammento del manoscritto. La voce è quella di Fra Celestino da Torcello, registrata — per quanto è dato sapere — sotto le fondamenta della città. Ascoltate con attenzione.",
