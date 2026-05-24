@@ -33,7 +33,11 @@ export function AnchorPage({ anchor }: { anchor: Anchor }) {
 
   const onSubmit = async (value: string) => {
     setStatus("loading");
-    const ok = await matchesAnchorHash(value, anchor.acceptedHashes);
+    const ok = await matchesAnchorHash(
+      value,
+      anchor.acceptedHashes,
+      anchor.normalize,
+    );
     if (!ok) {
       setErrors((n) => n + 1);
       setStatus("wrong");
