@@ -21,19 +21,36 @@ export function normalizeAnswer(input: string): string {
     .trim();
 }
 
+/** Opzioni per la normalizzazione estesa, per ancore con regole extra. */
+export type AnchorNormalizeOptions = {
+  /**
+   * Rimuove il sostantivo finale " ore" o " ora" (ancora 6, orologio:
+   * "24 ore" / "ventiquattro ore" → "24" / "ventiquattro"). Vedi
+   * `contenuti/ancora_6.md` § Istruzioni.
+   */
+  stripHours?: boolean;
+};
+
 /**
  * Normalizzazione "estesa" per le risposte alle ancore:
  *  - normalizeAnswer (lowercase, no accenti, no punteggiatura, no spazi extra)
  *  - rimuove articolo iniziale: il / lo / la / i / gli / le / l'
  *  - rimuove sostantivo finale generico: statua/statue, figura/figure
+ *  - se `stripHours`, rimuove anche suffisso ore/ora
  *  - ricollassa eventuali spazi
  *
  * Es. "Il Cristo" → "cristo", "la statua del cristo" → "del cristo".
  */
-export function normalizeAnchorAnswer(input: string): string {
+export function normalizeAnchorAnswer(
+  input: string,
+  options: AnchorNormalizeOptions = {},
+): string {
   let s = normalizeAnswer(input);
   s = s.replace(/^(?:il|lo|la|i|gli|le|l)\s+/u, "");
   s = s.replace(/\s+(?:statue|statua|figure|figura)$/u, "");
+  if (options.stripHours) {
+    s = s.replace(/\s+(?:ore|ora)$/u, "");
+  }
   return s.replace(/\s+/g, " ").trim();
 }
 
@@ -52,8 +69,11 @@ export async function hashAnswer(input: string): Promise<string> {
 }
 
 /** Come hashAnswer ma usa normalizeAnchorAnswer (articolo + sostantivo). */
-export async function hashAnchorAnswer(input: string): Promise<string> {
-  return sha256(normalizeAnchorAnswer(input));
+export async function hashAnchorAnswer(
+  input: string,
+  options: AnchorNormalizeOptions = {},
+): Promise<string> {
+  return sha256(normalizeAnchorAnswer(input, options));
 }
 
 /**
@@ -73,8 +93,9 @@ export async function matchesAnyHash(
 export async function matchesAnchorHash(
   userInput: string,
   acceptedHashes: readonly string[],
+  options: AnchorNormalizeOptions = {},
 ): Promise<boolean> {
   if (!userInput.trim()) return false;
-  const h = await hashAnchorAnswer(userInput);
+  const h = await hashAnchorAnswer(userInput, options);
   return acceptedHashes.includes(h);
 }

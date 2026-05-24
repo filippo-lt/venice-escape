@@ -1,8 +1,11 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
+  hashAnchorAnswer,
   hashAnswer,
+  matchesAnchorHash,
   matchesAnyHash,
+  normalizeAnchorAnswer,
   normalizeAnswer,
   sha256,
 } from "../crypto.ts";
@@ -55,5 +58,56 @@ describe("hashAnswer + matchesAnyHash", () => {
     assert.equal(await matchesAnyHash("", [h]), false);
     assert.equal(await matchesAnyHash("   ", [h]), false);
     assert.equal(await matchesAnyHash("acqua", [h]), false);
+  });
+});
+
+describe("normalizeAnchorAnswer", () => {
+  it("strips leading article", () => {
+    assert.equal(normalizeAnchorAnswer("Il Cristo"), "cristo");
+    assert.equal(normalizeAnchorAnswer("la marea"), "marea");
+  });
+
+  it("strips trailing statua/figura", () => {
+    assert.equal(normalizeAnchorAnswer("Cristo statua"), "cristo");
+    assert.equal(normalizeAnchorAnswer("leone figura"), "leone");
+  });
+
+  it("does not strip 'ore|ora' by default", () => {
+    assert.equal(normalizeAnchorAnswer("24 ore"), "24 ore");
+    assert.equal(normalizeAnchorAnswer("ventiquattro ore"), "ventiquattro ore");
+  });
+
+  it("strips trailing 'ore|ora' with stripHours option", () => {
+    assert.equal(
+      normalizeAnchorAnswer("24 ore", { stripHours: true }),
+      "24",
+    );
+    assert.equal(
+      normalizeAnchorAnswer("ventiquattro ore", { stripHours: true }),
+      "ventiquattro",
+    );
+    assert.equal(
+      normalizeAnchorAnswer("VENTIQUATTRO ORA", { stripHours: true }),
+      "ventiquattro",
+    );
+  });
+});
+
+describe("matchesAnchorHash with stripHours", () => {
+  it("'24 ore' matches the hash of '24'", async () => {
+    const h = await hashAnchorAnswer("24", { stripHours: true });
+    assert.equal(
+      await matchesAnchorHash("24 ore", [h], { stripHours: true }),
+      true,
+    );
+    assert.equal(
+      await matchesAnchorHash("ventiquattro", [h], { stripHours: true }),
+      false,
+    );
+  });
+
+  it("without stripHours, '24 ore' does NOT match '24'", async () => {
+    const h = await hashAnchorAnswer("24");
+    assert.equal(await matchesAnchorHash("24 ore", [h]), false);
   });
 });

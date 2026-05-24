@@ -55,6 +55,11 @@ export type Anchor = {
   hints?: readonly string[];
   /** Easter egg opzionale (sprite tappabile). */
   easterEgg?: EasterEgg;
+  /**
+   * Opzioni di normalizzazione extra passate a `matchesAnchorHash`.
+   * Es. ancora 6: `{ stripHours: true }` per accettare "24 ore" come "24".
+   */
+  normalize?: { stripHours?: boolean };
 };
 
 // TODO: sostituire gli hash con quelli reali quando le risposte definitive
@@ -308,18 +313,16 @@ export const ANCHORS: readonly Anchor[] = [
     location: "Rialto",
     theme: "Il Cuore — il mercato, il numero",
     fragment: "I",
-    // Forme post-normalizzazione: 24, ventiquattro, ventiquattrore,
-    // ore 24. La normalizzazione del progetto NON strippa "ore|ora"
-    // come sostantivo finale (estensione prevista in spec ma non
-    // applicata in normalizeAnchorAnswer): "24 ore" e simili NON
-    // matcheranno finché crypto.ts non viene esteso. "24" e
-    // "ventiquattro" funzionano.
+    // Forme post-normalizzazione (con stripHours): 24, ventiquattro,
+    // ventiquattrore, ore 24. Con normalize.stripHours abilitato qui
+    // sotto, anche "24 ore" e "ventiquattro ore" collassano e matchano.
     acceptedHashes: [
       "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db",
       "5037ed7ebbf1d640595569dbd19d970551ffe76142b1deda6907f1271fea2c4c",
       "c1f151b1ae304091a55dfda48b2afbad1d852e53a57ad140c083024882a00610",
       "1b42205eaf67023a1c575f08eff44cbb806d62e1647b39c4e8a710f744f5a9f4",
     ],
+    normalize: { stripHours: true },
     href: "/ancora/6",
     audioMain: "/audio/main/ancora_6.mp3",
     scene: "/images/ancora-6/ancora_6_scene.png",
