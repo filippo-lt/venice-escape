@@ -15,23 +15,21 @@ interface BootSequenceProps {
  * "typewriter" (steps()) e una riga di "warning" glitchata. Tap/click/keydown
  * → skip. In modalità `fast` mostra solo l'ultima riga per ~0.8s.
  */
+// Timing allineato alla tabella in docs/home_flow.md §Beat 1
+// (t = 0.0, 0.5, 1.0, 1.6, 2.3, 2.8, 3.2; fade-out a t=3.5s).
 const FULL_LINES: { text: string; delay: number; cls?: string; width: number }[] = [
   { text: "SCUMM v5.1.42 — Loading...", delay: 0.0, width: 28 },
-  { text: "Reading manuscript from disk A:\\", delay: 0.8, width: 33 },
-  { text: "Checking memory... 640K OK", delay: 1.6, width: 26 },
-  { text: "WARNING: file corrupted — anno 1297", delay: 2.4, cls: "glitch", width: 36 },
-  { text: "Recovering data from monastery_torcello.dat", delay: 3.2, width: 43 },
-  { text: ". . .", delay: 4.0, width: 5 },
-  { text: "OK — ready to play", delay: 4.6, cls: "with-cursor", width: 19 },
+  { text: "Reading manuscript from disk A:\\", delay: 0.5, width: 33 },
+  { text: "Checking memory... 640K OK", delay: 1.0, width: 26 },
+  { text: "WARNING: file corrupted — anno 1297", delay: 1.6, cls: "glitch", width: 36 },
+  { text: "Recovering data from monastery_torcello.dat", delay: 2.3, width: 43 },
+  { text: ". . .", delay: 2.8, width: 5 },
+  { text: "OK — ready to play", delay: 3.2, cls: "with-cursor", width: 19 },
 ];
 
-// Tempi derivati: l'ultima riga è completamente visibile (typewriter)
-// + un piccolo "hold" prima del cutover al title screen.
-const TYPEWRITER_MS = 600;
-const HOLD_MS = 400;
-const LAST_LINE = FULL_LINES[FULL_LINES.length - 1];
-const FULL_DURATION_MS = Math.round(LAST_LINE.delay * 1000 + TYPEWRITER_MS + HOLD_MS);
-const FAST_DURATION_MS = 1500;
+// Spec: fade-out boot a ~3.5s (full) / ~0.8s (fast, ritorno).
+const FULL_DURATION_MS = 3500;
+const FAST_DURATION_MS = 800;
 
 export default function BootSequence({ mode, onDone }: BootSequenceProps) {
   const doneRef = useRef(false);
@@ -109,9 +107,6 @@ export default function BootSequence({ mode, onDone }: BootSequenceProps) {
           60% { transform: translateX(-1px); }
           80% { transform: translateX(1px); }
         }
-        .cursor {
-          animation: blink 1s infinite;
-        }
         @media (prefers-reduced-motion: reduce) {
           .boot-line {
             animation: none;
@@ -155,7 +150,7 @@ function BootLine({
       </span>
       {hasCursor && (
         <span
-          className="cursor ml-1 inline-block"
+          className="cursor anim-blink ml-1 inline-block"
           style={{ animationDelay: `${delay + 0.4}s` }}
         >
           █
