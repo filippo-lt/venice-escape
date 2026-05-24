@@ -6,10 +6,11 @@ import Link from "next/link";
 import type { Anchor } from "@/lib/anchors";
 
 type Props = {
+  anchor: Anchor;
   next: Anchor;
 };
 
-export function NextDestinationCard({ next }: Props) {
+export function NextDestinationCard({ anchor, next }: Props) {
   return (
     <section className="w-full">
       <div className="relative border-2 border-ocra bg-paper px-4 py-4 text-bg-deep shadow-[3px_3px_0_var(--color-bg-deep)]">
@@ -27,18 +28,18 @@ export function NextDestinationCard({ next }: Props) {
           ✦ LA PROSSIMA SOGLIA ✦
         </p>
 
-        {next.nextTeaser && (
+        {anchor.nextTeaser && (
           <p className="relative mt-3 font-mono text-lg italic leading-snug text-bg-deep">
-            {next.nextTeaser}
+            {anchor.nextTeaser}
           </p>
         )}
 
-        {next.nextHint && (
+        {anchor.nextHint && (
           <p className="relative mt-3 font-mono text-base leading-snug text-stone-dark">
             <span className="font-pixel text-[8px] tracking-widest text-ocra">
               DOVE ANDARE —{" "}
             </span>
-            {next.nextHint}
+            {anchor.nextHint}
           </p>
         )}
       </div>
