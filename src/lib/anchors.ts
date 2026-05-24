@@ -153,11 +153,11 @@ export const ANCHORS: readonly Anchor[] = [
       "Pensa a cosa fu cancellato da TUTTA Venezia quando cadde la Repubblica. L'animale simbolo di San Marco. Il nome basta.",
     ],
     nextHint:
-      "Fra Celestino già si volta verso l'acqua. Dice qualcosa sulle maree, sulle Zattere dove il legname scendeva dai monti — e sul primo spritz della giornata, a quanto pare. Verso le ZATTERE.",
+      "Scendete in Dorsoduro, verso il campo grande dove la sera la città si dà appuntamento — e dove qualcuno di voi, dice il frate, è già stato. Verso CAMPO SANTA MARGHERITA.",
     archivistaOutro:
-      "Il leone c'era, anche se non lo vedete più. Anche un nome cancellato pesa, ragazzi — fidatevi di un frate. Adesso scendete verso l'acqua larga.",
+      "Il leone c'era, anche se non lo vedete più. Anche un nome cancellato pesa, ragazzi — fidatevi di un frate. Adesso scendete in Dorsoduro: c'è un campo dove le vite si incrociano.",
     nextTeaser:
-      "Dove il legname dei monti incontrava il sale, e la laguna respira due volte al giorno. Sentite la marea?",
+      "Un campo largo che chiama gente, una santa che esce viva dalla bestia, e — sussurra Fra Celestino — un incontro che cambia una vita intera.",
     easterEgg: {
       id: "lion-sconduo",
       // Tondo scalpellato sulla vera da pozzo, in basso a destra nella scena.
