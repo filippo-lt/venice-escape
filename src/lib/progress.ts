@@ -84,6 +84,15 @@ export function unlockAnchor(
   return next;
 }
 
+/**
+ * Registra il frammento svelato per l'ancora `id`. Idempotente: se è già
+ * presente, restituisce lo stesso oggetto. Usato dalla pagina di transizione.
+ */
+export function addFragment(p: Progress, id: number, letter: string): Progress {
+  if (p.fragments[id] === letter) return p;
+  return { ...p, fragments: { ...p.fragments, [id]: letter } };
+}
+
 export function addEasterEgg(p: Progress, eggId: string): Progress {
   if (p.easterEggsFound.includes(eggId)) return p;
   return { ...p, easterEggsFound: [...p.easterEggsFound, eggId] };

@@ -47,6 +47,10 @@ export type Anchor = {
   doveCercare?: string;
   /** Suggerimento per la prossima missione (mostrato in transizione). */
   nextHint?: string;
+  /** Riga di outro che Fra Celestino "sussurra" dopo l'enigma. */
+  archivistaOutro?: string;
+  /** Frase teaser per la prossima destinazione (1-2 righe, no spoiler). */
+  nextTeaser?: string;
   /** Hint progressivi mostrati su errori ripetuti. */
   hints?: readonly string[];
   /** Easter egg opzionale (sprite tappabile). */
@@ -62,7 +66,7 @@ export const ANCHORS: readonly Anchor[] = [
     slug: "stazione",
     location: "Stazione / Scalzi",
     theme: "La soglia, l'ingresso",
-    fragment: "◆₁",
+    fragment: "V",
     // Hash SHA-256 di risposte normalizzate (normalizeAnchorAnswer).
     // La normalizzazione applica: lowercase, trim, no accenti, no
     // punteggiatura, strip articolo iniziale, strip sostantivo finale
@@ -96,6 +100,10 @@ export const ANCHORS: readonly Anchor[] = [
       "Pensa a chi 'giudica' nella tradizione cristiana, chi sta sopra ogni cosa. Il suo nome basta.",
     ],
     nextHint: "Là dove la città comincia a contare i suoi pozzi.",
+    archivistaOutro:
+      "Bravi, ragazzi miei. Il Cristo vi ha aperto la porta — la prima lettera è vostra. Ora seguite l'acqua che non si vede: quella che dorme sotto la pietra.",
+    nextTeaser:
+      "Un campo silenzioso, un campanile storto e cinque vere da pozzo che ricordano quando Venezia beveva il cielo.",
     easterEgg: {
       id: "cristo-soglia",
       // Cristo in cima al frontone. La scena usa object-cover quindi
@@ -111,7 +119,7 @@ export const ANCHORS: readonly Anchor[] = [
     slug: "san-giacomo-orio",
     location: "San Giacomo dell'Orio",
     theme: "L'origine, i pozzi — e ciò che è stato cancellato",
-    fragment: "◆₂",
+    fragment: "E",
     // Forme post-normalizzazione: leone, leon, leone di san marco,
     // leon de san marco, leone marciano, leon marciano, san marco.
     // (Le varianti con articolo "il leone" collassano già su "leone".)
@@ -142,6 +150,10 @@ export const ANCHORS: readonly Anchor[] = [
     ],
     nextHint:
       "Fra Celestino già si volta verso l'acqua. Dice qualcosa sulle maree, sulle Zattere dove il legname scendeva dai monti — e sul primo spritz della giornata, a quanto pare. Verso le ZATTERE.",
+    archivistaOutro:
+      "Il leone c'era, anche se non lo vedete più. Anche un nome cancellato pesa, ragazzi — fidatevi di un frate. Adesso scendete verso l'acqua larga.",
+    nextTeaser:
+      "Dove il legname dei monti incontrava il sale, e la laguna respira due volte al giorno. Sentite la marea?",
     easterEgg: {
       id: "lion-sconduo",
       // Tondo scalpellato sulla vera da pozzo, in basso a destra nella scena.
@@ -154,56 +166,72 @@ export const ANCHORS: readonly Anchor[] = [
     slug: "zattere",
     location: "Zattere",
     theme: "L'acqua, la marea",
-    fragment: "MAREA",
+    fragment: "N",
     acceptedHashes: [], // TODO: hash di "marea" e varianti
     href: "/ancora/3",
     audioMain: "/audio/main/03.mp3",
     scene: "/images/scenes/03.webp",
     nextHint:
       "Là dove il legno regge ciò che la pietra non poté. Cercate il quarto segno prima che il sole tocchi i tetti.",
+    archivistaOutro:
+      "L'acqua sa tutto, ragazzi: arriva, se ne va, e ricorda. Avete imparato a leggerla. Ora cercate ciò che resta in piedi solo perché qualcuno l'ha voluto provvisorio.",
+    nextTeaser:
+      "Un ponte che doveva durare poco e dura ancora. Il legno tiene dove la pietra ha rinunciato.",
   },
   {
     id: 4,
     slug: "accademia",
     location: "Ponte dell'Accademia",
     theme: "L'impermanenza, ciò che regge",
-    fragment: "TODO",
+    fragment: "E",
     acceptedHashes: [],
     href: "/ancora/4",
     audioMain: "/audio/main/04.mp3",
     scene: "/images/scenes/04.webp",
     nextHint: "Verso il rumore del mercato, dove i numeri si fanno carne.",
+    archivistaOutro:
+      "Niente dura, ragazzi miei, e per questo dura. Anche un ponte di legno può salvarvi — ricordatelo. Ora seguite l'odore del pesce e del denaro.",
+    nextTeaser:
+      "Là dove Venezia contava sé stessa: in monete, in sacchi, in voci che gridano un prezzo.",
   },
   {
     id: 5,
     slug: "rialto",
     location: "Rialto",
     theme: "Il mercato, il numero",
-    fragment: "TODO",
+    fragment: "Z",
     acceptedHashes: [],
     href: "/ancora/5",
     audioMain: "/audio/main/05.mp3",
     scene: "/images/scenes/05.webp",
     nextHint: "Dove la città fu spaccata in due per far passare i piedi.",
+    archivistaOutro:
+      "Il numero non mente — i mercanti lo sapevano, e qualcuno qui pure. Avete contato bene. Ora attraversate la cicatrice diritta che taglia la città.",
+    nextTeaser:
+      "Una via troppo larga, troppo dritta per essere veneziana. Qui qualcuno ha scelto cosa cancellare.",
   },
   {
     id: 6,
     slug: "strada-nuova",
     location: "Strada Nuova",
     theme: "Ciò che è stato distrutto",
-    fragment: "TODO",
+    fragment: "I",
     acceptedHashes: [],
     href: "/ancora/6",
     audioMain: "/audio/main/06.mp3",
     scene: "/images/scenes/06.webp",
     nextHint: "Verso la fondamenta che guarda Murano: lo sguardo all'origine.",
+    archivistaOutro:
+      "Hanno raddrizzato la calle, ragazzi, ma non la memoria. Avete visto ciò che è stato tolto. L'ultima ancora vi aspetta lontano dal rumore — verso l'acqua che guarda l'isola del fuoco.",
+    nextTeaser:
+      "Una fondamenta che dà le spalle al chiasso e gli occhi a Murano. È quasi tempo di ricomporre il nome.",
   },
   {
     id: 7,
     slug: "misericordia",
     location: "Fondamenta della Misericordia",
     theme: "Lo sguardo verso le origini",
-    fragment: "TODO",
+    fragment: "A",
     acceptedHashes: [],
     href: "/ancora/7",
     audioMain: "/audio/main/07.mp3",
