@@ -1,5 +1,4 @@
-import { describe, it } from "node:test";
-import assert from "node:assert/strict";
+import { describe, it, expect } from "vitest";
 import {
   hashAnchorAnswer,
   hashAnswer,
@@ -8,38 +7,35 @@ import {
   normalizeAnchorAnswer,
   normalizeAnswer,
   sha256,
-} from "../crypto.ts";
+} from "../crypto";
 
 describe("normalizeAnswer", () => {
   it("lowercases, trims and collapses whitespace", () => {
-    assert.equal(normalizeAnswer("  Ciao   Mondo  "), "ciao mondo");
+    expect(normalizeAnswer("  Ciao   Mondo  ")).toBe("ciao mondo");
   });
 
   it("strips diacritics", () => {
-    assert.equal(normalizeAnswer("àncora"), "ancora");
-    assert.equal(normalizeAnswer("perché"), "perche");
-    assert.equal(normalizeAnswer("MAREA"), "marea");
+    expect(normalizeAnswer("àncora")).toBe("ancora");
+    expect(normalizeAnswer("perché")).toBe("perche");
+    expect(normalizeAnswer("MAREA")).toBe("marea");
   });
 
   it("strips common punctuation", () => {
-    assert.equal(normalizeAnswer("la marea!"), "la marea");
-    assert.equal(normalizeAnswer("«sette»"), "«sette»".replace(/[«»]/g, "").toLowerCase());
+    expect(normalizeAnswer("la marea!")).toBe("la marea");
+    expect(normalizeAnswer("«sette»")).toBe("sette");
   });
 
   it("two visually equal but differently composed strings collapse", () => {
-    // "à" composta vs decomposta
-    const a = "àncora"; // à in NFC
-    const b = "àncora"; // a + combining grave in NFD
-    assert.equal(normalizeAnswer(a), normalizeAnswer(b));
+    const a = "àncora";
+    const b = "àncora";
+    expect(normalizeAnswer(a)).toBe(normalizeAnswer(b));
   });
 });
 
 describe("sha256", () => {
   it("matches a known vector", async () => {
-    // sha256("") = e3b0c4...
     const h = await sha256("");
-    assert.equal(
-      h,
+    expect(h).toBe(
       "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     );
   });
@@ -48,66 +44,87 @@ describe("sha256", () => {
 describe("hashAnswer + matchesAnyHash", () => {
   it("matches an accepted variant regardless of casing/diacritics", async () => {
     const hMarea = await hashAnswer("marea");
-    assert.equal(await matchesAnyHash("MAREA", [hMarea]), true);
-    assert.equal(await matchesAnyHash("  Marèa  ", [hMarea]), true);
-    assert.equal(await matchesAnyHash("Marea!", [hMarea]), true);
+    expect(await matchesAnyHash("MAREA", [hMarea])).toBe(true);
+    expect(await matchesAnyHash("  Marèa  ", [hMarea])).toBe(true);
+    expect(await matchesAnyHash("Marea!", [hMarea])).toBe(true);
   });
 
   it("rejects empty and wrong answers", async () => {
     const h = await hashAnswer("marea");
-    assert.equal(await matchesAnyHash("", [h]), false);
-    assert.equal(await matchesAnyHash("   ", [h]), false);
-    assert.equal(await matchesAnyHash("acqua", [h]), false);
+    expect(await matchesAnyHash("", [h])).toBe(false);
+    expect(await matchesAnyHash("   ", [h])).toBe(false);
+    expect(await matchesAnyHash("acqua", [h])).toBe(false);
   });
 });
 
 describe("normalizeAnchorAnswer", () => {
   it("strips leading article", () => {
-    assert.equal(normalizeAnchorAnswer("Il Cristo"), "cristo");
-    assert.equal(normalizeAnchorAnswer("la marea"), "marea");
+    expect(normalizeAnchorAnswer("Il Cristo")).toBe("cristo");
+    expect(normalizeAnchorAnswer("la marea")).toBe("marea");
   });
 
   it("strips trailing statua/figura", () => {
-    assert.equal(normalizeAnchorAnswer("Cristo statua"), "cristo");
-    assert.equal(normalizeAnchorAnswer("leone figura"), "leone");
+    expect(normalizeAnchorAnswer("Cristo statua")).toBe("cristo");
+    expect(normalizeAnchorAnswer("leone figura")).toBe("leone");
   });
 
   it("does not strip 'ore|ora' by default", () => {
-    assert.equal(normalizeAnchorAnswer("24 ore"), "24 ore");
-    assert.equal(normalizeAnchorAnswer("ventiquattro ore"), "ventiquattro ore");
+    expect(normalizeAnchorAnswer("24 ore")).toBe("24 ore");
+    expect(normalizeAnchorAnswer("ventiquattro ore")).toBe("ventiquattro ore");
   });
 
   it("strips trailing 'ore|ora' with stripHours option", () => {
-    assert.equal(
-      normalizeAnchorAnswer("24 ore", { stripHours: true }),
-      "24",
-    );
-    assert.equal(
-      normalizeAnchorAnswer("ventiquattro ore", { stripHours: true }),
+    expect(normalizeAnchorAnswer("24 ore", { stripHours: true })).toBe("24");
+    expect(normalizeAnchorAnswer("ventiquattro ore", { stripHours: true })).toBe(
       "ventiquattro",
     );
-    assert.equal(
-      normalizeAnchorAnswer("VENTIQUATTRO ORA", { stripHours: true }),
+    expect(normalizeAnchorAnswer("VENTIQUATTRO ORA", { stripHours: true })).toBe(
       "ventiquattro",
     );
+  });
+});
+
+describe("edge cases", () => {
+  it("matchesAnyHash with empty array returns false", async () => {
+    expect(await matchesAnyHash("marea", [])).toBe(false);
+  });
+
+  it("collapses multiple internal spaces", () => {
+    expect(normalizeAnswer("ciao    mondo  bello")).toBe("ciao mondo bello");
+  });
+
+  it("strips symbol characters (\\p{S})", () => {
+    // currency, math, copyright symbols
+    expect(normalizeAnswer("marea © $")).toBe("marea");
+    expect(normalizeAnswer("a+b=c")).toBe("abc");
+  });
+
+  it("hashAnchorAnswer with stripHours produces normalized hash", async () => {
+    const h1 = await hashAnchorAnswer("24 ore", { stripHours: true });
+    const h2 = await hashAnchorAnswer("24");
+    expect(h1).toBe(h2);
+  });
+
+  it("matchesAnchorHash rejects empty/whitespace input", async () => {
+    const h = await hashAnchorAnswer("cristo");
+    expect(await matchesAnchorHash("", [h])).toBe(false);
+    expect(await matchesAnchorHash("   ", [h])).toBe(false);
   });
 });
 
 describe("matchesAnchorHash with stripHours", () => {
   it("'24 ore' matches the hash of '24'", async () => {
     const h = await hashAnchorAnswer("24", { stripHours: true });
-    assert.equal(
+    expect(
       await matchesAnchorHash("24 ore", [h], { stripHours: true }),
-      true,
-    );
-    assert.equal(
+    ).toBe(true);
+    expect(
       await matchesAnchorHash("ventiquattro", [h], { stripHours: true }),
-      false,
-    );
+    ).toBe(false);
   });
 
   it("without stripHours, '24 ore' does NOT match '24'", async () => {
     const h = await hashAnchorAnswer("24");
-    assert.equal(await matchesAnchorHash("24 ore", [h]), false);
+    expect(await matchesAnchorHash("24 ore", [h])).toBe(false);
   });
 });
