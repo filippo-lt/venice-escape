@@ -105,3 +105,18 @@ export function highestUnlocked(p: Progress): number {
     ? 1
     : Math.max(...p.unlockedAnchors);
 }
+
+/**
+ * Restituisce l'id della prima ancora (1..total) per cui non esiste
+ * un frammento raccolto. Se sono tutte presenti, restituisce `null`.
+ */
+export function firstMissingFragment(
+  p: Progress,
+  total = 7,
+): number | null {
+  for (let i = 1; i <= total; i++) {
+    const f = p.fragments[i];
+    if (!f || f.trim() === "") return i;
+  }
+  return null;
+}
