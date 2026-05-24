@@ -83,9 +83,8 @@ export const ANCHORS: readonly Anchor[] = [
       "510cd116cfb34c88f8ea4efb5c7693256704d17b39c5ee11d854b5339af6a7d0",
     ],
     href: "/ancora/1",
-    // Placeholder finché non arriva l'MP3 reale (vedi contenuti/ancora_1).
     audioMain: "/audio/main/ancora_1.mp3",
-    scene: "/images/scenes/ancora_1.webp",
+    scene: "/images/ancora-1/ancora_1_scene.png",
     archivistaIntro:
       "Trasmetto il primo frammento del manoscritto. La voce è quella di Fra Celestino da Torcello, registrata — per quanto è dato sapere — sotto le fondamenta della città. Ascoltate con attenzione.",
     traduzione:
@@ -134,7 +133,7 @@ export const ANCHORS: readonly Anchor[] = [
     ],
     href: "/ancora/2",
     audioMain: "/audio/main/ancora_2.mp3",
-    scene: "/images/scenes/ancora_2.webp",
+    scene: "/images/ancora-2/ancora_2_scene.png",
     archivistaIntro:
       "Secondo frammento. Fra Celestino ci conduce alle origini idriche della città — un tema, devo ammettere, di reale interesse storico. Il frate sembra però in vena di divagazioni personali. Traduco fedelmente, come d'obbligo.",
     traduzione:
@@ -163,79 +162,232 @@ export const ANCHORS: readonly Anchor[] = [
   },
   {
     id: 3,
-    slug: "zattere",
-    location: "Zattere",
-    theme: "L'acqua, la marea",
+    slug: "santa-margherita",
+    location: "Campo Santa Margherita",
+    theme: "L'Incontro — il campo dove le vite si intrecciano",
     fragment: "N",
-    acceptedHashes: [], // TODO: hash di "marea" e varianti
+    // Forme post-normalizzazione (normalizeAnchorAnswer strip "la"/"il"):
+    // santa margherita, margherita, santa margherita di antiochia,
+    // margherita di antiochia, santa margarita.
+    acceptedHashes: [
+      "a5472fbd504e16900a25bf7ac76b429a4743e97cbc687c6e0438869581075894",
+      "e6e45d8dad824b5c53b9252f439778e196963ec98de3376339e1484e68097330",
+      "34aac9e77782bc26fdf93b55b682204b0595de86f6ddb2285d36760727158293",
+      "e3129fae8e970910f5752f90e5353ac30db9ab5cd99d9d80360dad9f7853807b",
+      "0c71b789165e8215f91c2cb358cfb06df342c7a5261a1f24eff4dca8256a52f3",
+    ],
     href: "/ancora/3",
-    audioMain: "/audio/main/03.mp3",
-    scene: "/images/scenes/03.webp",
+    audioMain: "/audio/main/ancora_3.mp3",
+    scene: "/images/ancora-3/ancora_3_scene.png",
+    archivistaIntro:
+      "Terzo frammento. Il frate ci porta in uno dei campi più vivi della città e — devo segnalarlo — sembra di ottimo umore. Allude a frequentazioni giovanili che preferisco non commentare. Traduco la parte utile.",
+    traduzione:
+      '"Ah, ragazzi miei, questo campo! Qui io e Fra Bortolo venivamo a guardare le ragazze con il fresco della sera — lui lo chiamava \'studio dei moti celesti\', il furbo. Perbacco, ragazzi: in questo campo certi incontri ti cambiano una vita intera... ma non dico altro. Guardate bene: c\'è una lastra antica su una casa bassa in mezzo al campo. Una santa che esce viva dalla bestia. Chi è lei, sposo? Tu che sai — e tu che qui, beh, ci sei stato."',
+    archivistaNota:
+      "Nota dell'Archivista: il frate insinua qualcosa sul Lettore Eletto e questo campo, con la solita inopportuna familiarità. E parla di una santa \"che esce viva dalla bestia\": un'agiografia precisa, in effetti. Su quello, almeno, posso lavorare.",
+    doveCercare:
+      "Al centro del campo, isolata, c'è una piccola casa bassa che un tempo era la sede di un'antica corporazione di artigiani. Sulla sua parete, una lastra di pietra scolpita: la pietra è consumata e la figura è poco leggibile, ma si distingue ancora una creatura accanto a lei — un drago. Chi sconfigge il mostro dà il nome al campo intero.",
+    hints: [
+      "Non cercate tra le tante case: una sola, bassa e isolata al centro del campo, porta una lastra scolpita. La figura è consumata, ma la creatura/drago è ancora riconoscibile: è quello il dettaglio. Guardate la creatura accanto a lei.",
+      "La figura è una santa. La creatura è un drago. La santa lo affronta e ne esce viva. È la stessa santa che dà il nome a TUTTO il campo in cui vi trovate.",
+      "Il nome del campo. Quello che leggi sulle insegne. Quella santa lì. Il nome basta.",
+    ],
     nextHint:
-      "Là dove il legno regge ciò che la pietra non poté. Cercate il quarto segno prima che il sole tocchi i tetti.",
+      "Là dove il legname dai monti incontrava il sale, e la laguna respira due volte al giorno. Verso le ZATTERE.",
     archivistaOutro:
-      "L'acqua sa tutto, ragazzi: arriva, se ne va, e ricorda. Avete imparato a leggerla. Ora cercate ciò che resta in piedi solo perché qualcuno l'ha voluto provvisorio.",
+      "Santa Margherita — la santa che entrò nella bestia e ne uscì viva e intera. In questo campo, ragazzi, le cose cominciano. Qualcuno qui lo sa meglio degli altri.",
     nextTeaser:
-      "Un ponte che doveva durare poco e dura ancora. Il legno tiene dove la pietra ha rinunciato.",
+      "Dove il legname dei monti incontrava il sale, e la laguna respira due volte al giorno. Sentite la marea?",
+    easterEgg: {
+      id: "drago-margherita",
+      // Drago scolpito sulla lastra dei Varoteri, casa bassa al centro
+      // del campo. Tap target generoso per coprire variazioni di crop.
+      hitbox: { top: 55, left: 44, width: 14, height: 17 },
+      toast: "★ INDIZIO TROVATO ★",
+    },
   },
   {
     id: 4,
-    slug: "accademia",
-    location: "Ponte dell'Accademia",
-    theme: "L'impermanenza, ciò che regge",
+    slug: "zattere",
+    location: "Zattere",
+    theme: "L'acqua, la marea — la via segnata nella laguna",
     fragment: "E",
-    acceptedHashes: [],
+    // Forme post-normalizzazione: briccola, bricola, briccole, bricole,
+    // palo, pali, briccola da ormeggio, palina.
+    acceptedHashes: [
+      "4c896a85dd03cc4577cfb4cacc8ed2f716c7306c0fc8c98033ef388d8776795a",
+      "767c97f97f8111b0b86cc5c0fd43c695edd2e8a7fd98278fbdf765bda4260602",
+      "49c1f38cc03b2380a1aaee821c8085aa8820bedfdc4f2a5c756672f72709b875",
+      "f22d619526002606863fdc15ee9699270267f269a87bdcebf7674c2f1b0a529b",
+      "20a4611836d9648a53789efa3d70565eedee2991e9227dcbc95c750ca602a0be",
+      "487b01bf06caa17d32fb5b6e0f4c8e337bf3df7fffcbcce460dc44c2cff50fd6",
+      "cf101785e2efa6e9f6bc0a4deb3867921b6d133de142ed16c005d8530c2cc24a",
+      "3de94a89e0612b596fc4f2bfde1dd0fe2a19e9d389bbec0086e9da2db25a3211",
+    ],
     href: "/ancora/4",
-    audioMain: "/audio/main/04.mp3",
-    scene: "/images/scenes/04.webp",
-    nextHint: "Verso il rumore del mercato, dove i numeri si fanno carne.",
+    audioMain: "/audio/main/ancora_4.mp3",
+    scene: "/images/ancora-4/ancora_4_scene.png",
+    archivistaIntro:
+      "Quarto frammento. Fra Celestino è giunto alle Zattere e — devo segnalarlo nuovamente — pare essersi concesso un secondo ristoro. Alcune espressioni risultano difficili da rendere in italiano contemporaneo. Faccio del mio meglio.",
+    traduzione:
+      '"Ah, le Zattere, ragazzi! Tenete stretto il bicchiere, che questo è il secondo. Io e Fra Bortolo, questi pomeriggi, li chiamavamo \'osservazione astronomica\'... e già vedevamo due lune. Ma adesso guardate l\'acqua: vedete quei pali piantati nella laguna? Non sono lì per caso. Quelli segnano la strada giusta quando la marea sale — chi non li conosce, si arena. Come si chiamano, questi guardiani di legno? Tu che sai, dimmelo tu."',
+    archivistaNota:
+      "Nota dell'Archivista: il frate parla di una \"osservazione astronomica\" in compagnia del confratello Fra Bortolo che pare consistesse, soprattutto, nel vedere doppio. Le fonti monastiche non confermano alcuna attività astronomica congiunta. Sorvolo.",
+    doveCercare:
+      "Non cercate a terra: guardate l'acqua. Davanti a voi, piantati nel fondo della laguna lungo il canale, ci sono pali di legno scuro, spesso legati a gruppi. Sono lì da secoli, a indicare la rotta. Hanno un nome veneziano preciso.",
+    hints: [
+      "Non è qualcosa sulla riva. È nell'acqua. Pali di legno, scuri, consumati dalla marea, spesso legati insieme a piccoli gruppi.",
+      "Servono a segnare dove le barche possono passare senza arenarsi. Sono il 'cartello stradale' della laguna. Hanno un nome veneziano specifico.",
+      "Mirco, è la parola che ogni veneziano conosce per quei pali da ormeggio e segnalazione. Inizia per B. Il nome basta.",
+    ],
+    nextHint:
+      "Cambiate sponda. Dove il legno dura più della pietra, e il provvisorio è diventato eterno. Verso il PONTE DELL'ACCADEMIA.",
     archivistaOutro:
-      "Niente dura, ragazzi miei, e per questo dura. Anche un ponte di legno può salvarvi — ricordatelo. Ora seguite l'odore del pesce e del denaro.",
+      "Le briccole — i guardiani di legno della laguna. Segnano la rotta a chi sa leggerla, e ingoiano chi non la rispetta. Quattro frammenti su sette: il manoscritto ora vi riconosce come naviganti.",
     nextTeaser:
-      "Là dove Venezia contava sé stessa: in monete, in sacchi, in voci che gridano un prezzo.",
+      "Un ponte che doveva durare una stagione e regge ancora. Sotto i piedi non c'è pietra: c'è legno.",
+    easterEgg: {
+      id: "briccola-tre-tacche",
+      // Briccola in primo piano nella scena, con tre tacche orizzontali
+      // incise sul legno.
+      hitbox: { top: 55, left: 22, width: 12, height: 24 },
+      toast: "★ INDIZIO TROVATO ★",
+    },
   },
   {
     id: 5,
-    slug: "rialto",
-    location: "Rialto",
-    theme: "Il mercato, il numero",
+    slug: "accademia",
+    location: "Ponte dell'Accademia",
+    theme: "Il Passaggio — l'impermanenza, ciò che regge",
     fragment: "Z",
-    acceptedHashes: [],
+    // Forme post-normalizzazione: legno, di legno, de legno, ponte di
+    // legno, ponte de legno, legname, ponte di legno provvisorio.
+    // (Articolo "il legno" collassa su "legno".)
+    acceptedHashes: [
+      "58f766b5a4642c95e9e02d2cc8c0461ccb6c108e4fcf525c6c08ef7c85162df6",
+      "64862f4b6ab23c9c4bd565a97149c8a55dcaeea9361abd34a8807224c0632023",
+      "35a225fee3524640e83cbbecf075b23787daaedb3b6abd0f90677dbb13c5f8d4",
+      "d3d00977300e62aa143d497567426b2a224e2092742a66f096257f1fa67277b9",
+      "938a70fe0618626d18c2ef70353bca405b1f885738b1a5b0aafe5b683c169491",
+      "d1cec2e55503bb24de271ff25ea84763277f9ad282e5834b2ccc39d01b4b0b2c",
+      "846bb7964001aab5b7dcdd722ffb9a34ff3e8c62413b0ceb8ed1655f4e6de26e",
+    ],
     href: "/ancora/5",
-    audioMain: "/audio/main/05.mp3",
-    scene: "/images/scenes/05.webp",
-    nextHint: "Dove la città fu spaccata in due per far passare i piedi.",
+    audioMain: "/audio/main/ancora_5.mp3",
+    scene: "/images/ancora-5/ancora_5_scene.png",
+    archivistaIntro:
+      "Quinto frammento. Vi conduce sul ponte e — lo confesso — non so più se trasmetto un astronomo o un filosofo da osteria. Divaga sulla pazienza e sulle cose che \"non hanno fretta di cadere\". Mi rassegno e traduco la parte che conta.",
+    traduzione:
+      '"Ragazzi, fermatevi qui, in mezzo al ponte. Sotto di voi non c\'è pietra: c\'è legno. Questo ponte era nato per durare una stagione, e guardalo, il mona — è ancora qui, che non ha mai avuto fretta di cadere. Ehi: a Venezia regge quello che sembra non possa reggere. Ditemi di cosa è fatto, sposo — la cosa umile che ha superato il ferro e la pietra. Tu che sai."',
+    archivistaNota:
+      "Nota dell'Archivista: il frate insiste sul fatto che certe cose \"non hanno fretta di cadere\", come se fosse una virtù. Suppongo intenda qualcosa sulla durevolezza. La parte verificabile, almeno, è chiara: chiede di che materiale è fatto il ponte.",
+    doveCercare:
+      "Non guardate lontano: guardate sotto i vostri piedi e le vostre mani. Quattro ponti attraversano il Canal Grande, e questo è l'unico che non è fatto di pietra né di ferro. Toccate il parapetto. Quello di cui è fatto — quello che doveva essere provvisorio e non se n'è più andato — è la risposta.",
+    hints: [
+      "Non è una figura, non è un nome scolpito. È la materia stessa del ponte. Toccatela.",
+      "Gli altri ponti del Canal Grande sono di pietra (o, uno, di ferro). Questo no. Di cosa è fatto ciò su cui state camminando?",
+      "Il ponte 'provvisorio' del '33, quello che non hanno mai sostituito. La materia umile che ha tenuto. Una parola: il materiale.",
+    ],
+    nextHint:
+      "Verso il cuore mercantile, dove anche le ore si contano per intero. Verso RIALTO.",
     archivistaOutro:
-      "Il numero non mente — i mercanti lo sapevano, e qualcuno qui pure. Avete contato bene. Ora attraversate la cicatrice diritta che taglia la città.",
+      "Legno. La cosa più umile, e l'unica che ha tenuto. Quattro ponti, e questo — il provvisorio, quello nato per un giorno — è ancora in piedi. A Venezia, ragazzi, regge ciò che non ha fretta. Ricordatevelo.",
     nextTeaser:
-      "Una via troppo larga, troppo dritta per essere veneziana. Qui qualcuno ha scelto cosa cancellare.",
+      "Là dove Venezia si pesava in monete e ore intere. L'orologio della chiesa più antica non conta a metà.",
+    easterEgg: {
+      id: "doga-tarch",
+      // Doga del corrimano con un nodo nel legno, lato Dorsoduro,
+      // sul parapetto in primo piano.
+      hitbox: { top: 62, left: 10, width: 14, height: 14 },
+      toast: "★ INDIZIO TROVATO ★",
+    },
   },
   {
     id: 6,
-    slug: "strada-nuova",
-    location: "Strada Nuova",
-    theme: "Ciò che è stato distrutto",
+    slug: "rialto",
+    location: "Rialto",
+    theme: "Il Cuore — il mercato, il numero",
     fragment: "I",
-    acceptedHashes: [],
+    // Forme post-normalizzazione: 24, ventiquattro, ventiquattrore,
+    // ore 24. La normalizzazione del progetto NON strippa "ore|ora"
+    // come sostantivo finale (estensione prevista in spec ma non
+    // applicata in normalizeAnchorAnswer): "24 ore" e simili NON
+    // matcheranno finché crypto.ts non viene esteso. "24" e
+    // "ventiquattro" funzionano.
+    acceptedHashes: [
+      "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db",
+      "5037ed7ebbf1d640595569dbd19d970551ffe76142b1deda6907f1271fea2c4c",
+      "c1f151b1ae304091a55dfda48b2afbad1d852e53a57ad140c083024882a00610",
+      "1b42205eaf67023a1c575f08eff44cbb806d62e1647b39c4e8a710f744f5a9f4",
+    ],
     href: "/ancora/6",
-    audioMain: "/audio/main/06.mp3",
-    scene: "/images/scenes/06.webp",
-    nextHint: "Verso la fondamenta che guarda Murano: lo sguardo all'origine.",
+    audioMain: "/audio/main/ancora_6.mp3",
+    scene: "/images/ancora-6/ancora_6_scene.png",
+    archivistaIntro:
+      "Sesto frammento. Vi avevo avvertiti: il passaggio è particolarmente colorito. Il frate è al suo secondo... ristoro della giornata, e si sente. Traduco la parte utile e sorvolo, per quanto possibile, sul resto.",
+    traduzione:
+      '"Eh, ragazzi miei — siamo arrivati al cuore: Rialto! Qui si pesa, si conta, si baratta ogni cosa di questo mondo. Guardate l\'orologio sulla chiesa più antica di Venezia: questo matto non conta a metà come gli altri, lui va fino in fondo, tutto il giorno intero. Quante ore ci sono in un giorno veneziano, sposo? Tu che sai. Eh, perbacco, l\'orologio è sempre ubriaco come me — versatemi un\'ombra, su, che ho la gola secca."',
+    archivistaNota:
+      "Nota dell'Archivista: il frate paragona un orologio pubblico al proprio stato. Mi limito a registrare un dato: l'orologio della chiesa di San Giacomo è effettivamente noto, da secoli, per la sua inaffidabilità. Su questo, almeno, non posso smentirlo.",
+    doveCercare:
+      "Nel campo dietro il ponte, dove i bàcari versano l'ombra e i banchi un tempo pesavano l'oro. C'è una piccola chiesa — dicono la più antica della città. Alzate gli occhi alla sua facciata: porta un grande orologio. Guardatelo bene. Non conta come gli altri.",
+    hints: [
+      "Non contate i bàcari né le arcate del ponte. Alzate lo sguardo: sulla facciata della chiesetta più antica c'è un grande orologio. È lì.",
+      "Quell'orologio non è normale: ha una sola lancetta e non si ferma a 12. Seguite i numeri fino in fondo. Quante ore segna, in tutto?",
+      "Il modo veneziano di contare le ore. La giornata intera, da un tramonto all'altro, in un giro solo. Il numero. Solo il numero.",
+    ],
+    nextHint:
+      "A nord, attraverso Cannaregio, lontano dal rumore. Dove i bàcari versano l'ombra fino a sera. Verso la FONDAMENTA DELLA MISERICORDIA.",
     archivistaOutro:
-      "Hanno raddrizzato la calle, ragazzi, ma non la memoria. Avete visto ciò che è stato tolto. L'ultima ancora vi aspetta lontano dal rumore — verso l'acqua che guarda l'isola del fuoco.",
+      "Ventiquattro. A Rialto perfino il tempo si conta per intero: il giorno veneziano non si spezza a metà come altrove. Nel cuore del mercato, dove ogni cosa ha un numero e un peso, anche le ore sono merce — e si contano tutte.",
     nextTeaser:
-      "Una fondamenta che dà le spalle al chiasso e gli occhi a Murano. È quasi tempo di ricomporre il nome.",
+      "Una fondamenta tranquilla, lontana dal chiasso. Tra i bàcari, una vecchia osteria porta scritto il nome di un paradiso perduto.",
+    easterEgg: {
+      id: "ora-ciuca",
+      // Orologio a 24 ore sulla facciata di San Giacometto.
+      hitbox: { top: 18, left: 42, width: 16, height: 18 },
+      toast: "★ INDIZIO TROVATO ★",
+    },
   },
   {
     id: 7,
     slug: "misericordia",
     location: "Fondamenta della Misericordia",
-    theme: "Lo sguardo verso le origini",
+    theme: "La Rivelazione — il paradiso ritrovato",
     fragment: "A",
-    acceptedHashes: [],
+    // Forme post-normalizzazione: paradiso, paradiso perduto,
+    // paradiso perduo, el paradiso perduo, el paradiso perduto.
+    // ("el" non è coperto dal regex articoli → hash distinti.)
+    acceptedHashes: [
+      "114f26a1d2265a436f6ef3d6f9abb01f00b9f7e182b2c36eea7252e52aa0cac7",
+      "57979e057fdece0e4baffeead1ca7c143fa53204704342440aee4130b65bd630",
+      "c2daa64adb8e0b53fc6add2273729851341fd3b180b926af287c46c32d34616a",
+      "1eeddf0abbb228e447d5f61bd6084f6e4b4eac70ee52c05d5a46c4defd979783",
+      "0332ae19380a5cc9ddc4a7113733cc7a81036b62eed856be765f84e60f519c80",
+    ],
     href: "/ancora/7",
-    audioMain: "/audio/main/07.mp3",
-    scene: "/images/scenes/07.webp",
+    audioMain: "/audio/main/ancora_7.mp3",
+    scene: "/images/ancora-7/ancora_7_scene.png",
+    archivistaIntro:
+      "L'ultimo frammento. Il frate ha smesso di scherzare: la voce gli si è fatta diversa. Lo traduco parola per parola, perché stavolta — credo — conta tutto.",
+    traduzione:
+      '"Ragazzi miei… siamo all\'ultima. Ma stavolta non vi mando in una chiesa. Guardate questa fondamenta: qui, tra i bàcari, c\'è una vecchia osteria che io e Bortolo chiamavamo il nostro paradiso — e che paradiso, ragazzi! Adesso, per me, è perduto. Ma per voi… no. Trovatela: porta scritto proprio il nome di ciò che ho perduto. Guardate bene l\'insegna, sposo — tu che sai."',
+    archivistaNota:
+      "Nota dell'Archivista: il frate parla di un luogo reale, su questa stessa fondamenta. Non aggiungo altro: per una volta, le sue parole non hanno bisogno di me.",
+    doveCercare:
+      "Lungo la fondamenta, là dove i bàcari versano l'ombra fino a sera. Cercate una vecchia osteria con un'insegna inconfondibile: porta il nome di un paradiso che si è perso. Leggetela bene — dice più di quel che sembra.",
+    hints: [
+      "Stavolta non è una chiesa né un monumento. Guardate i bàcari della fondamenta: a uno di loro il frate è molto affezionato. Leggetene i nomi.",
+      "Il frate lo chiama 'il nostro paradiso', e dice che ora è perduto. C'è un'osteria che si chiama esattamente così. Il nome è la risposta.",
+      "Lo storico bàcaro della Misericordia, quello con l'insegna 'vietato ormeggiare'. Il Paradiso Perduto. Scrivete solo: paradiso.",
+    ],
+    easterEgg: {
+      id: "vietato-ormeggiare",
+      // Targhetta "VIETATO ORMEGGIARE" + briccola, sul bordo acqua
+      // in primo piano nella scena.
+      hitbox: { top: 70, left: 8, width: 16, height: 18 },
+      toast: "★ INDIZIO TROVATO ★",
+    },
   },
 ] as const;
 
