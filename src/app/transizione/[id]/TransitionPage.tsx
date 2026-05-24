@@ -130,7 +130,7 @@ function TransitionPageInner({ anchor, next, outroAudio }: Props) {
 
         {/* Next destination */}
         {next ? (
-          <NextDestinationCard next={next} />
+          <NextDestinationCard anchor={anchor} next={next} />
         ) : (
           <Link
             href="/finale"
