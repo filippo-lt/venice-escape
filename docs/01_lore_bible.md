@@ -92,19 +92,31 @@ Le ancore non sono distribuite a caso: tracciano il **percorso del pellegrino me
 
 | # | Zona | Tema | Frammento prodotto |
 |---|------|------|---------------------|
-| 1 | Stazione / Scalzi | La soglia, l'ingresso | Lettera ◆₁ (DEFINITA — vedi sotto) |
-| 2 | Santa Croce | L'origine, i pozzi | (da definire) |
-| 3 | Zattere | L'acqua, la marea | (da definire) |
-| 4 | Ponte dell'Accademia | L'impermanenza, ciò che regge | (da definire) |
-| 5 | Rialto | Il mercato, il numero | (da definire) |
-| 6 | Strada Nuova | Ciò che è stato distrutto | (da definire) |
-| 7 | Fondamenta della misericordia | Lo sguardo verso le origini | Frammento finale |
+| 1 | Stazione / Scalzi | La soglia, l'ingresso | Lettera ◆₁ = **V** (DEFINITA — vedi `ancora_1.md`) |
+| 2 | San Giacomo dell'Orio | L'origine, i pozzi | Lettera ◆₂ = **E** (DEFINITA — vedi `ancora_2.md`) |
+| 3 | Campo Santa Margherita | L'incontro, dove le vite si intrecciano | Lettera ◆₃ = **N** (DEFINITA — vedi `ancora_3.md`) |
+| 4 | Zattere | L'acqua, la marea (secondo spritz, alticcia) | Lettera ◆₄ = **E** (DEFINITA — vedi `ancora_4.md`) |
+| 5 | Ponte dell'Accademia | L'impermanenza, ciò che regge | Lettera ◆₅ = **Z** (DEFINITA — vedi `ancora_5.md`) |
+| 6 | Rialto | Il mercato, il numero | Lettera ◆₆ = **I** (DEFINITA — vedi `ancora_6.md`) |
+| 7 | Fondamenta della Misericordia | La rivelazione / la redenzione (Paradiso Perduto) | Lettera ◆₇ = **A** (DEFINITA — vedi `ancora_7.md`) |
+
+> **Le sette lettere compongono `VENEZIA`** (◆₁..◆₇ = V·E·N·E·Z·I·A).
+
+> **NOTA SHIFT PERCORSO (riordino):** Campo Santa Margherita è stato
+> inserito come Ancora 3 ed è uscita Strada Nuova. Le Zattere sono scalate
+> a Ancora 4. Santa Margherita ospita il **primo spritz stop** e il ricordo
+> "tose" di Fra Celestino (cuore emotivo: è il campo dove lo sposo ha
+> conosciuto la sposa). Le Zattere sono il **secondo spritz**, anch'esso
+> lungo (seduti, ~30 min), modalità alticcia, ma su contenuto diverso da A3
+> (astronomia da ubriaco / bocce, NON tose). Il tema ex-Strada Nuova
+> "ciò che è stato distrutto" è riassorbito dall'Ancora 2 (leone
+> scalpellato). Vedi `02_route_and_timing.md`.
 
 ### Logica dei frammenti
 
 Ogni ancora restituisce un **frammento** — può essere una parola, un numero, un simbolo, una direzione. Sette frammenti, assemblati al finale, rivelano la destinazione conclusiva (luogo del brindisi finale).
 
-**Meccanica decisa (Ancora 1+):** ogni ancora produce **una lettera**. Le sette lettere, assemblate al finale, compongono il **nome del luogo della cena**. Le lettere specifiche sono da fissare quando il luogo della cena sarà scelto; fino ad allora i frammenti restano placeholder posizionali (◆₁ … ◆₇).
+**Meccanica decisa (DEFINITIVA):** ogni ancora produce **una lettera**. Le sette lettere, assemblate al `/finale`, compongono la parola **`VENEZIA`** (◆₁..◆₇ = V·E·N·E·Z·I·A) — la città stessa che il gruppo ha "tenuto a galla" attivando le sette ancore. **Non c'è più una cena finale:** dopo la rivelazione il gioco manda tutti **a casa** (ritorno verso Stazione S. Lucia), chiudendo letteralmente il tema *"Tosi me porteo casa"* dello sposo. Durante il gioco i frammenti restano visivamente `◆`; si rivelano come lettere solo al `/finale`.
 
 L'interpretazione finale dei frammenti spetta al **Lettore Eletto**.
 
@@ -118,6 +130,16 @@ L'interpretazione finale dei frammenti spetta al **Lettore Eletto**.
 - **Inside joke integrato:** la frase "nel Cristo" (vedi file 05, episodio di Mick) è agganciata in modo *deniable* nella main quest. Battesimo perfetto: il primo enigma parla già la lingua del gruppo.
 - **Nota di campo:** richiede sopralluogo per confermare che il Cristo sia ben visibile dal sagrato. Il vecchio meccanismo "conta le statue" è stato SCARTATO perché la facciata ha ~12 statue ambigue → fragile per un enigma tutorial.
 - **Build spec:** il contenuto implementativo completo di questa ancora (testi a schermo, hash risposta, prompt asset, hint, extended cut) è in `ancora_1.md`. Ogni ancora ha il suo file di build; template in `_TEMPLATE_ancora_N.md`. Vedi `04_website_architecture.md` § "File di build per ancora".
+
+### Ancora 7 — LA RIVELAZIONE (Fondamenta della Misericordia) — DEFINITA
+
+- **Luogo:** Fondamenta della Misericordia (Cannaregio), davanti allo storico bàcaro **Il Paradiso Perduto**. Spazio pubblico, gratuito. È l'**ultima tappa**: dopo, si torna a casa.
+- **Enigma (riconoscimento di luogo + cultura veneziana viva):** Fra Celestino, smessa la profezia, manda il gruppo alla "vecchia osteria" che lui e Fra Bortolo chiamavano *il loro paradiso* — ora *perduto*. Il gruppo trova l'insegna; il Lettore Eletto riconosce **Il Paradiso Perduto** (e il rimando ai **Pitura Freska**), legge la targa "**vietato ormeggiare**" e coglie il doppio senso: l'unica àncora che non va tenuta. Il paradiso *perduto* è quello del frate; quello del novizo — la casa, il matrimonio — **non** è perduto.
+- **Risposta:** `paradiso` (varianti: paradiso perduto / perduo).
+- **Lettera prodotta:** ◆₇ = **A** (settima lettera di VENEZIA).
+- **Finale:** risolto l'enigma → `/finale`: i sette frammenti compongono **VENEZIA**, parte il monologo d'addio (modalità seria), si chiude il tema *"Tosi me porteo casa"* e il gioco manda tutti a casa. **Niente cena.**
+- **Cenno Ghetto (DECISO: nessuno):** sul cammino Rialto→Misericordia si attraversa la zona del Ghetto, ma il gioco **non lo nomina né lo gamifica** (anacronismo per Fra Celestino — Ghetto 1516 vs morte ~1297 — e scelta di tono). Resta solo un fatto geografico del tragitto. Vedi `ancora_7.md`.
+- **Build spec:** `ancora_7.md` (include la pagina `/finale`).
 
 ---
 

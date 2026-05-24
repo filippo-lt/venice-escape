@@ -92,6 +92,7 @@ IMMAGINI      │ Statiche .webp in /public/images/
               │
 STATO         │ localStorage per:
               │ - Progresso main quest (ancore sbloccate)
+              │ - Frammenti raccolti (◆₁..◆₇ = lettere di VENEZIA)
               │ - Easter egg trovati (per side quest)
               │ - Foto del gruppo (URL upload)
               │
@@ -115,10 +116,16 @@ DOMINIO       │ Suggerimenti:
                              Main quest entry point
 
 MAIN QUEST (Fase 1)
-/ancora/1 ... /ancora/7      Schermate gioco SCUMM-style
+/ancora/1                    Schermata gioco SCUMM-style [sbloccata da inizio]
+/ancora/2 ... /ancora/7      idem, ma BLOCCATE: si sbloccano col CODICE DI
+                             ARRIVO dato dal GM sul posto (vedi
+                             `06_gating_e_spec_tecniche.md`)
 /transizione/1 ... /6        Frammento svelato + prossimo luogo
-/finale                      Rivelazione cena
-/mappa                       Mappa minimale, accessibile sempre
+                             (NON mostra il codice; l'Ancora 7 NON ha
+                              transizione: va diretta a /finale)
+/finale                      Rivelazione: i 7 frammenti compongono VENEZIA
+                             + addio di Fra Celestino + ritorno a casa (niente cena)
+/mappa                       Mappa minimale, accessibile sempre (vedi file 06)
 
 MANOSCRITTO (Fase 2 — sbloccato dopo)
 /manoscritto                 Hub centrale del side content
@@ -130,7 +137,8 @@ MANOSCRITTO (Fase 2 — sbloccato dopo)
 /manoscritto/extra           Audio extended cut, behind the scenes
 
 ADMIN / GAME MASTER
-/soluzioni                   (URL segreto) tutte le risposte
+/soluzioni                   (URL segreto) risposte + codici di arrivo GM
+                             + override/skip ancora (vedi file 06)
 /reset                       Reset progresso per test
 ```
 
@@ -181,16 +189,26 @@ chiaro vivono solo nei file di progetto (non nel repo) e in `/soluzioni`.
 `trim → toLowerCase → rimuovi accenti → rimuovi articolo iniziale →
 rimuovi sostantivo finale ridondante → collassa spazi`.
 
-Stato build-spec:
+Stato build-spec (percorso aggiornato post-riordino — tutte le ancore create):
 ```
-ancora_1.md   ✓ DEFINITA (manca solo sopralluogo facciata)
-ancora_2.md   ✗ da creare (Santa Croce — l'origine, i pozzi)
-ancora_3.md   ✗ da creare (Zattere — l'acqua, la marea)
-ancora_4.md   ✗ da creare (Accademia — l'impermanenza)
-ancora_5.md   ✗ da creare (Rialto — il mercato, il numero)
-ancora_6.md   ✗ da creare (Strada Nuova — ciò che è distrutto)
-ancora_7.md   ✗ da creare (Fondamente Nove — lo sguardo alle origini)
+ancora_1.md   ✓ DEFINITA  (Scalzi — la soglia)            ◆₁=V · risp. cristo
+ancora_2.md   ✓ DEFINITA  (San Giacomo dell'Orio — la     ◆₂=E · risp. leone
+                           fonte cancellata)
+ancora_3.md   ✓ DEFINITA  (Santa Margherita — l'incontro;  ◆₃=N · risp. santa margherita
+                           🍸 spritz #1)         · sopralluogo lastra Varoteri pendente
+ancora_4.md   ✓ DEFINITA  (Zattere — l'acqua/la marea;     ◆₄=E · risp. briccola
+                           🍸 spritz #2 lungo, alticcio)  · briccole CONFERMATE sul posto
+ancora_5.md   ✓ DEFINITA  (Ponte dell'Accademia — il       ◆₅=Z · risp. legno
+                           passaggio; drammatica)        · sopralluogo + anacronismo 1933
+ancora_6.md   ✓ DEFINITA  (Rialto / San Giacometto — il    ◆₆=I · risp. 24
+                           cuore; 🍸 cicchetti #2)       · sopralluogo orologio pendente
+ancora_7.md   ✓ DEFINITA  (Fondamenta della Misericordia / ◆₇=A · risp. paradiso
+                           Il Paradiso Perduto — la
+                           rivelazione + /finale)        · sopralluogo insegna/orari pendente
 ```
+> Le sette lettere compongono **VENEZIA** (V·E·N·E·Z·I·A). Niente cena
+> finale: dopo `/finale` il gioco manda tutti a casa. "Stato pendente"
+> riguarda solo i sopralluoghi sul campo, non la build-spec (completa).
 
 ---
 
@@ -446,17 +464,24 @@ NASTRO ROSSO        │ #c42424  (decorazioni manuale)
 ```typescript
 type Progress = {
   // Main quest
-  unlockedAnchors: number[]
-  fragments: Record<number, string>
+  unlockedAnchors: number[]    // [1] all'inizio; +N quando si inserisce il
+                               // CODICE DI ARRIVO del GM (vedi file 06)
+  fragments: Record<number, string>   // ◆₁..◆₇ = V·E·N·E·Z·I·A → "VENEZIA" a /finale
 
   // Side quest
-  easterEggsFound: string[]    // ["bricola-3-tacche", "vin-importante", ...]
+  easterEggsFound: string[]    // ["briccola-tre-tacche", "doga-tarch", ...]
   photosUploaded: string[]      // (post-game)
 
   // Meta
   completedMainQuest: boolean
   startedAt: number
   completedAt?: number
+}
+
+// Gating fisico: una pagina /ancora/N (N>1) è accessibile solo se sbloccata
+// dal codice di arrivo del GM (hash in ARRIVAL_CODES, vedi file 06).
+function canAccessAnchor(n: number, progress: Progress): boolean {
+  return n === 1 || progress.unlockedAnchors.includes(n)
 }
 
 // Sblocco del side content

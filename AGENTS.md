@@ -1,6 +1,6 @@
-# CLAUDE.md — Venice Escape
+# AGENTS.md — Venice Escape
 
-Questo file viene letto automaticamente da Claude Code all'avvio. Contiene il contesto del progetto e le convenzioni di lavoro.
+Questo file viene letto automaticamente da Codex all'avvio. Contiene il contesto del progetto e le convenzioni di lavoro.
 
 ---
 
@@ -27,14 +27,7 @@ Stile visivo: **estetica SCUMM/LucasArts anni 90** (Monkey Island + Indiana Jone
 | `docs/03_voice_and_tone.md` | Registro linguistico, voci, estetica audio/visiva |
 | `docs/04_website_architecture.md` | **CRITICO**: struttura tecnica completa del sito |
 | `docs/05_side_content.md` | Manoscritto post-evento, easter egg, personalizzazioni |
-| `docs/06_gating_e_spec_tecniche.md` | **CRITICO**: codici di arrivo GM, normalizzazione risposte, `/soluzioni`, `/mappa` |
-| `docs/home_flow.md` | Build spec self-contained per la home `/` (boot → title → press start) |
-| `docs/home_assets_prompts.md` | Prompt per generare asset della home |
 | `docs/mood_scumm.html` | **Mockup visivo di riferimento** — palette esatta, componenti, layout |
-
-I file `_TEMPLATE_ancora_N.md` + `ancora_1.md` … `ancora_7.md` in `contenuti/`
-sono le **build spec self-contained per ogni ancora** (un "ticket" per CC,
-con audio, testi, hash, hint, easter egg, prompt asset).
 
 > ⚠️ Quando in dubbio sull'estetica, **apri `docs/mood_scumm.html` e usa quello come ground truth**. È stato approvato esplicitamente dall'utente.
 
@@ -60,60 +53,39 @@ Linguaggio     TypeScript strict
 
 ```
 venice-escape/
-├── CLAUDE.md                    ← questo file
-├── AGENTS.md                    ← stesso contenuto per Codex
+├── AGENTS.md                    ← questo file
 ├── README.md                    ← guida generale
 ├── docs/                        ← documentazione di design (NON modificare)
-│   ├── 00_project_instructions.md
 │   ├── 01_lore_bible.md
 │   ├── 02_route_and_timing.md
 │   ├── 03_voice_and_tone.md
 │   ├── 04_website_architecture.md
 │   ├── 05_side_content.md
-│   ├── 06_gating_e_spec_tecniche.md
-│   ├── home_flow.md
-│   ├── home_assets_prompts.md
 │   └── mood_scumm.html
-├── contenuti/                   ← build spec per ancora (un file per ancora)
-│   ├── _TEMPLATE_ancora_N.md
-│   ├── ancora_1.md
-│   ├── ancora_2.md
-│   ├── … ancora_7.md
+├── contenuti/                   ← output testuali dal Codex Project
+│   ├── ancora-1/
+│   ├── ancora-2/
+│   └── ...
 ├── public/
 │   ├── audio/
-│   │   ├── main/                ← ancora_1..7.mp3 + finale.mp3 (brevi, <300KB)
-│   │   ├── extended/            ← audio lunghi (60-180 sec, fase 2)
-│   │   └── ambient/             ← ambient_lagoon.mp3 (home, opz.)
+│   │   ├── main/                ← audio brevi (15-25 sec)
+│   │   └── extended/            ← audio lunghi (60-180 sec, fase 2)
 │   └── images/
-│       ├── ancora-1..7/         ← scene + easter + fragment per ogni ancora
-│       │     ├── ancora_N_scene.png
-│       │     ├── ancora_N_easter.png
-│       │     └── fragment_N.png
-│       ├── title_lagoon.png     ← sfondo home title screen
-│       ├── sprite_gondola.png   ← sprite home (anim CSS)
-│       ├── sprite_lantern.png   ← sprite home (flicker)
-│       ├── fra_celestino_portrait.png
-│       ├── mappa_ancore.png     ← per /mappa
-│       └── finale_venezia.png   ← per /finale
+│       ├── sprites/
+│       └── scenes/
 └── src/                         ← codice Next.js
     ├── app/
-    │   ├── page.tsx                       (home: boot + title — DA RIFARE)
-    │   ├── ancora/[id]/{page,AnchorPage}.tsx   ✓ esistono
-    │   ├── transizione/[id]/{page,TransitionPage}.tsx  ✓ esistono
-    │   ├── finale/page.tsx                (DA CREARE)
-    │   ├── mappa/page.tsx                 (DA CREARE)
-    │   ├── soluzioni/page.tsx             (GM, DA CREARE)
-    │   ├── reset/page.tsx                 (DA CREARE)
-    │   ├── dev/components/                (catalogo componenti)
-    │   └── manoscritto/                   (fase 2)
+    │   ├── page.tsx             (boot screen)
+    │   ├── ancora/[id]/page.tsx
+    │   ├── transizione/[id]/page.tsx
+    │   ├── finale/page.tsx
+    │   └── manoscritto/         (fase 2)
     ├── components/
-    │   ├── scumm/               ← DialogBox, AudioPlayer, Inventory,
-    │   │                          CommandBar, SceneFrame, VerbUI (✓ esistono)
+    │   ├── scumm/               (DialogBox, AudioPlayer, Inventory, ecc.)
     │   └── manuscript/          (componenti per il side content)
     └── lib/
-        ├── anchors.ts           ← definizione 7 ancore + hash + easter egg
-        ├── progress.ts          ← localStorage progress
-        └── crypto.ts            ← hashAnswer + normalizeAnswer
+        ├── progress.ts          (gestione localStorage)
+        └── crypto.ts            (hashing risposte)
 ```
 
 ---
@@ -173,17 +145,8 @@ type Progress = {
 - Confronto degli hash, mai delle stringhe in chiaro nel sorgente
 - Ogni ancora può avere multiple risposte valide (varianti accettabili)
 - Il progresso vive in localStorage con chiave `venice-escape-progress`
-- L'accesso a una `/ancora/[id]` richiede che `id ∈ unlockedAnchors`
+- L'accesso a una `/ancora/[id]` richiede che `id <= max(unlockedAnchors)`
 - Tentativo di accesso non autorizzato → redirect alla prima ancora bloccata
-- **Gating fisico (vedi `docs/06`):** ancore 2..7 si sbloccano col **codice di
-  arrivo** che il Game Master dà a voce sul posto (parola d'accesso hashata
-  in `ARRIVAL_CODES`). `/ancora/1` è l'unica sbloccata di default. Il codice
-  NON è la soluzione dell'enigma.
-- **Normalizzazione canonica risposte** in `lib/crypto.ts` (`normalizeAnswer`)
-  deve combaciare esattamente con lo script Python che genera gli hash negli
-  `ancora_N.md` (NFD → strip accenti → lowercase → strip articolo iniziale →
-  strip sostantivo finale ridondante → collassa spazi). Ancora 6 chiama con
-  `{ stripHours: true }`.
 
 ---
 
@@ -192,31 +155,47 @@ type Progress = {
 ### Fase 1 — Pre-evento (urgente)
 
 ```
-✦ Milestone 1: Infrastruttura                                    ✓ DONE
-✦ Milestone 2: Componenti SCUMM                                  ✓ DONE
-  (DialogBox, AudioPlayer, Inventory, VerbUI, SceneFrame, CommandBar)
-✦ Milestone 3: Pagina prototipo /ancora                          ✓ DONE
-  /ancora/[id] funzionante con tutti i componenti
-✦ Milestone 4: Asset e contenuti                                 ✓ DONE
-  - 7 audio main quest (ancora_1..7.mp3) + finale.mp3
-  - 7 cartelle scene/easter/fragment per ancora
-  - Portrait Fra Celestino, mappa, sprite gondola/lanterna, title lagoon
+✦ Milestone 1: Infrastruttura
+  □ Inizializza Next.js 15 + Tailwind v4
+  □ Configura font Google
+  □ Imposta palette colori e design system
+  □ Setup deploy su Vercel
+  □ Verifica HMR e build production
 
-  Ancora aperti:
-  □ /transizione/[1-6] con animazioni di rivelazione (stub esistente)
-  □ Home page (boot animato + title vivo + press start) — `docs/home_flow.md`
-  □ /finale con composizione VENEZIA + outro Fra Celestino
-  □ /mappa manoscritto-style con punti che si accendono
-  □ /soluzioni (GM) e /reset
+✦ Milestone 2: Componenti SCUMM
+  □ <DialogBox /> con speaker + testo + cursor
+  □ <AudioPlayer /> con waveform stilizzato
+  □ <Inventory /> con 7 slot per i frammenti
+  □ <VerbUI /> (decorativo, non interattivo)
+  □ <SceneFrame /> per le scene pixel art
+  □ <CommandBar /> per l'input risposta
+  □ Tutti coerenti con docs/mood_scumm.html
 
-✦ Milestone 5: Logica completa
-  □ ARRIVAL_CODES + UI ancora bloccata (vedi docs/06)
-  □ Hash reali per le 7 risposte (rimpiazzare stub in lib/anchors.ts)
-  □ Tracking easter egg + sblocco /segreti
+✦ Milestone 3: Pagina prototipo
+  □ /ancora/3 (Zattere) come prototipo completo
+  □ Layout mobile-first
+  □ Integra tutti i componenti
+  □ Test su iPhone reale + Android reale
+  □ Itera fino a convergenza
+
+✦ Milestone 4: Replica e completa
+  □ /ancora/[1-7] tutte funzionanti
+  □ /transizione/[1-6] con animazioni di rivelazione
+  □ / (boot screen) con sequenza di avvio
+  □ /finale con composizione frammenti
+  □ /mappa accessibile sempre
+
+✦ Milestone 5: Logica
+  □ Verifica risposte con SHA-256
+  □ localStorage per progresso
+  □ Gating delle ancore
+  □ Easter egg con tracking separato
 
 ✦ Milestone 6: Polish
   □ Service Worker per offline
   □ Performance audit (Lighthouse mobile > 90)
+  □ /soluzioni nascosta per Game Master
+  □ /reset per test
   □ Test integrale a Venezia
 ```
 
@@ -263,7 +242,7 @@ type Progress = {
 
 ## Come gestire i contenuti
 
-I contenuti **testuali** (script di Fra Celestino, testi dell'Archivista, indicazioni di luogo) vengono dal Claude Project separato. L'utente li deposita in `contenuti/ancora-N/`.
+I contenuti **testuali** (script di Fra Celestino, testi dell'Archivista, indicazioni di luogo) vengono dal Codex Project separato. L'utente li deposita in `contenuti/ancora-N/`.
 
 I contenuti **multimediali** (audio MP3, immagini WebP) vengono prodotti esternamente:
 - **Audio**: ElevenLabs → post-prod Audacity → `public/audio/`

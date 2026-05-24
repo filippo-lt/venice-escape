@@ -45,13 +45,18 @@ Il gioco ha **due voci distinte**, mai sovrapposte. Il **contrasto tra le due è
 
 | Tappa | Stato emotivo | Esempio di registro |
 |-------|---------------|---------------------|
-| Ancora 1 | Composto, professionale | *"Trasmetto il primo frammento. Ascoltate con attenzione."* |
-| Ancora 2 | Leggermente perplesso | *"Il frate sembra essere... in vena. Traduco fedelmente."* |
-| Ancora 3 | Imbarazzato ma diplomatico | *"Alcune espressioni risultano difficili da rendere in italiano contemporaneo. Faccio del mio meglio."* |
-| Ancora 4 | Visibilmente a disagio | *"Trascrivo letteralmente. Non commento."* |
-| Ancora 5 | Rassegnato | *"...e Fra Celestino è di nuovo all'osteria, a quanto pare."* |
-| Ancora 6 | Sopportazione affettuosa | *"Vi avverto: il prossimo passaggio è particolarmente colorito."* |
-| Ancora 7 | Tornata la solennità | *"Questo è l'ultimo frammento. E forse, anche Fra Celestino, alla fine, ritrova la grazia."* |
+| Ancora 1 (Scalzi) | Composto, professionale | *"Trasmetto il primo frammento. Ascoltate con attenzione."* |
+| Ancora 2 (S.Giacomo) | Leggermente perplesso | *"Il frate sembra essere... in vena. Traduco fedelmente."* |
+| Ancora 3 (S.Margherita) | Imbarazzato ma diplomatico | *"Allude a frequentazioni giovanili che preferisco non commentare. Traduco la parte utile."* |
+| Ancora 4 (Zattere) | Visibilmente a disagio | *"Trascrivo letteralmente. Non commento."* |
+| Ancora 5 (Accademia) | Rassegnato | *"...e Fra Celestino divaga di nuovo, a quanto pare."* |
+| Ancora 6 (Rialto) | Sopportazione affettuosa | *"Vi avverto: il prossimo passaggio è particolarmente colorito."* |
+| Ancora 7 (Misericordia) | Tornata la solennità | *"Questo è l'ultimo frammento. E forse, anche Fra Celestino, alla fine, ritrova la grazia."* |
+
+> **NOTA SHIFT:** la prima tappa "alticcia/spritz" è Ancora 3 (Santa
+> Margherita). Le Zattere (Ancora 4) sono il **secondo spritz** (lungo,
+> sosta lunga, seduti): Fra Celestino è alticcio anche qui, ma su contenuto
+> diverso da A3 (vedi nota tose più sotto).
 
 ### Cosa NON fa l'Archivista
 
@@ -85,19 +90,31 @@ Il gioco ha **due voci distinte**, mai sovrapposte. Il **contrasto tra le due è
 
 **Gancio comico a lungo termine:** l'aggancio "nel Cristo" è un inside joke del gruppo (vedi file 05). L'Archivista, ignaro, lo tratta come formula devozionale e nelle ancore successive può tornarci sopra sempre più perplesso senza mai capire. Filo comico che attraversa l'intero arco dell'Archivista.
 
-**Esempio intermedio (Ancora 3, Zattere) — più ridanciano:**
+**Esempio intermedio (Ancora 3, Santa Margherita) — più ridanciano:**
 
-> *"Ah, le Zattere! Qua mi venia col mio confratello Fra Bortolo a vardar le tose che passava co' la fresca dea sera. Lui dixea che jera 'studio dei movimenti celesti'. Mi ghe credevo, ostrega! ... Ma adesso scoltème: la marea che vien da soto la Zueca la conta sète volte..."*
+> *"Ah, mòneghi mii, sto campo! Qua mi e Fra Bortolo vegnévimo a vardar le tose co' la fresca dea sera. Lu el ghe ciamava 'studio dei moti celesti', el furbo. Mi ghe credevo, ostrega! ... Ma scoltème: in sto campo certi incontri te cambia 'na vita intiera... ma no digo altro. Varda ben la lastra vecia: 'na santa che esce viva da la bestia."*
 >
-> **Traduzione dell'Archivista (leggermente a disagio):**
-> *"Ah, le Zattere! Qui venivo con il mio confratello Fra Bortolo a guardare le ragazze che passavano con il fresco della sera. Lui diceva che era 'studio dei movimenti celesti'. Io gli credevo, perbacco! ... Ma adesso ascoltatemi: la marea che viene da sotto la Giudecca conta sette volte..."*
+> **Traduzione dell'Archivista (imbarazzato ma diplomatico):**
+> *"Ah, ragazzi miei, questo campo! Qui io e Fra Bortolo venivamo a guardare le ragazze con il fresco della sera. Lui lo chiamava 'studio dei moti celesti', il furbo. Io gli credevo, perbacco! ... Ma ascoltatemi: in questo campo certi incontri ti cambiano una vita intera... ma non dico altro. Guardate bene la lastra antica: una santa che esce viva dalla bestia."*
 
-**Momento serio (Ancora 7, Fondamente Nove) — torna profondo:**
+> **NOTA SHIFT:** il ricordo "tose" di Fra Celestino vive **solo** qui
+> (Santa Margherita), per non duplicare il tema "ragazze incontrate" col
+> legame personale dello sposo (Julia, vedi file 05). Le Zattere (Ancora 4)
+> sono il **secondo spritz**, sempre in modalità alticcia, ma su contenuto
+> **diverso**: astronomia da ubriaco / scommessa alle bocce / le "due lune",
+> NON le tose. Esempio per le Zattere: *"Tegnì streto el bicer, che 'sto xe
+> el secondo... mi e Bortolo ghe disévimo 'osservazion astronomica', e za
+> vedévimo do lune. Ma varda l'acqua: quei pali segna la strada bona quando
+> la marea monta."*
 
-> *"Mòneghi mii, gh'è 'na cosa che voria dirve prima de tasèr per sempre. Mi gò vissudo dò vite: una de scienza e una de osterìa. Eh, no me ne pentisso de nissuna. Ma sentì cossa che ve digo, fioi: la marea sale per tuti. E quel che resta, no xe quel che gavè bevudo, ma chi che gavè portà con vu. El nostro novizo el lo sa za. Andè, e benediteme l'acqua per mi."*
+**Momento serio (Ancora 7 / `/finale`, Fondamenta della Misericordia — Il Paradiso Perduto) — torna profondo:**
+
+> *"Sète àncore, fioi. Sète létare. Mettèle insieme… e vedè cossa che gavè tegnùo su tuto el zorno: VENEXIA. No 'na ostarìa, no 'na cale — la sità intiera, che senza de vu 'ndava soto. Mòneghi mii, gh'è 'na roba che voria dirve prima de tasèr par sempre. Mi gò vissudo dò vite: una de scienza e una de osterìa. No me ne pentisso de nissuna. Ma quel che resta no xe quel che gavè bevùo — xe chi che gavè portà con vu. E ti, novizo — ti che ti gà sempre dito 'tosi, me porteo casa' — stavolta el to paradiso no'l xe perdùo: el te speta drento 'na casa, co' 'na tosa che te vol ben. Va', Cirpo. Va' a casa. E benediteme l'acqua, par mi."*
 >
 > **Traduzione dell'Archivista (commosso):**
-> *"Ragazzi miei, c'è una cosa che vorrei dirvi prima di tacere per sempre. Ho vissuto due vite: una di scienza e una d'osteria. Ehi, non mi pento di nessuna delle due. Ma sentite cosa vi dico, ragazzi: la marea sale per tutti. E quello che resta non è ciò che avete bevuto, ma chi avete portato con voi. Il nostro sposo lo sa già. Andate, e benedite l'acqua per me."*
+> *"Sette ancore, ragazzi. Sette lettere. Mettetele insieme… e vedete cosa avete tenuto su tutto il giorno: VENEZIA. Non un'osteria, non una calle — la città intera, che senza di voi affondava. Ragazzi miei, c'è una cosa che vorrei dirvi prima di tacere per sempre. Ho vissuto due vite: una di scienza e una d'osteria. Non mi pento di nessuna. Ma quello che resta non è ciò che avete bevuto — è chi avete portato con voi. E tu, sposo — tu che hai sempre detto 'ragazzi, me ne torno a casa' — stavolta il tuo paradiso non è perduto: ti aspetta dentro una casa, con una ragazza che ti vuole bene. Va', Cirpo. Va' a casa. E benedite l'acqua, per me."*
+
+> **NOTA:** questo è il monologo del `/finale` (versione definitiva). Testo a schermo, easter egg e versione extended cut completa in `ancora_7.md`. La rivelazione delle 7 lettere compone **VENEZIA**; dopo, il gioco manda tutti **a casa** (niente cena).
 
 ### Le tre modalità di Fra Celestino
 
@@ -107,9 +124,10 @@ SERIA               BURLONA              ALTICCIA
 (profeta)           (zio simpatico)      (post-osteria)
 
 Apertura            La maggior parte     Picchi di follia
-Ancora 1            degli enigmi         in Ancore 3, 5
-Chiusura            (Ancore 2, 4, 6)     (le soste-spritz)
-Ancora 7
+Ancora 1            degli enigmi         in Ancore 3, 4, 6
+Chiusura            (Ancore 2, 5)        (le soste-bevuta: S.Margherita
+Ancora 7                                  spritz #1, Zattere spritz #2
+                                          lungo, Rialto cicchetti #2)
 ```
 
 Le **modalità seria e alticcia** sono i due estremi. La modalità **burlona** è il default.
@@ -218,12 +236,18 @@ Effetti da applicare in ordine:
 
 ### Formato file e dimensioni
 
-- **Formato**: MP3 a 96-128 kbps (bilancia qualità e peso per il web)
-- **Durata**:
-  - Minimo 25 secondi
-  - Massimo 50 secondi (Fra Celestino tende a divagare)
-  - Ideale 30-40 secondi
-- **Peso target**: 300-600 KB per traccia (caricamento veloce su 4G in calle)
+- **Formato**: MP3 a 96 kbps (main) / 128 kbps (finale ed extended)
+- **Durata** (allineata a brief + file 04 — niente più 25-50 sec):
+  - **Main quest** (audio enigma `/audio/main/ancora_N.mp3`): **15-25 sec**.
+    È il vincolo principale per la fluidità in calle. Le trascrizioni reali
+    stanno sui ~20-24 sec.
+  - **Finale** (`/audio/main/finale.mp3`): **~50-60 sec** (unica eccezione
+    main più lunga: il gruppo è fermo, è il climax).
+  - **Extended cut** (`/audio/extended/ancora_N.mp3`, Fase 2): **60-180 sec**.
+- *(Nota: Fra Celestino tende a divagare — tenere la main asciutta; le
+  divagazioni vanno nell'extended cut, non nella main quest.)*
+- **Peso target**: ≤300 KB per traccia main (96 kbps, caricamento veloce su
+  4G in calle); finale ed extended fino a ~600 KB.
 
 ---
 

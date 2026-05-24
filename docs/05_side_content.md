@@ -50,14 +50,22 @@ Dettaglio luogo: Ha VISSUTO a Campo San Giacomo dell'Orio per 2 anni
 
 > *“Ciò, mòneghi — mi, in vita mia, tosi a casa no ne gò portà. El nostro Cirpo invece sì, e par sempre. Ostrega.”*
 
+**Finale del gioco (DEFINITO):** l'Ancora 7 (Fondamenta della Misericordia, bàcaro **Il Paradiso Perduto**) è l'ultima tappa. Al `/finale` i sette frammenti compongono **VENEZIA**; parte il monologo d'addio che chiude il tema *"Tosi me porteo casa"*; **non c'è cena** — il gioco manda tutti a casa (ritorno verso Stazione S. Lucia). Monologo, extended cut e dedica a Julia in `ancora_7.md`.
+
 ### La sposa
 
 ```
 Nome:            Julia
 Citazione Fra Celestino (placeholder — da affinare):
   "Julia, che co' la vede, capisce tuto."
+Dettaglio luogo: Cirpo ha CONOSCIUTO Julia a Campo Santa
+                 Margherita. USO: Ancora 3 (cuore emotivo
+                 del gioco). In main quest deniable ("certi
+                 incontri te cambia 'na vita"); esplode
+                 nell'extended cut ("qua ti gà incontrà ela").
+                 NON esplicitare Julia davanti al gruppo.
 Note:            Citata con affetto nella dedica finale.
-                 Nessun tratto specifico ancora raccolto —
+                 Pochi tratti specifici raccolti —
                  aggiornare se disponibile prima dell'evento.
 ```
 
@@ -296,7 +304,7 @@ a casa: beh, qua, par un toco, casa tóa la jera propio
 'sto campo. Tienlo a mente, novizo, quando varderai la
 tosa che ti spóse: la casa no xe un posto. Xe chi te speta
 drento. Bon — andè a bever, che ve gò fato vegnir sé.
-Verso le Zattere, fioi."
+Verso Santa Margherita, fioi — el campo dei incontri."
 
 CONTESTO STORICO REALE
 ──────────────────────
@@ -324,19 +332,88 @@ Inside joke: i francesi (il leone tolto) + Cirpo e Zuppo
   che hanno vissuto qui due anni
 ```
 
-### Esempio: Capitolo III — Le Zattere
+### Capitolo III — L'Incontro (Santa Margherita) — DEFINITO
+
+```
+AUDIO EXTENDED CUT (~150 sec) — TESTO DEFINITIVO
+─────────────────────────────────────────────────
+[È il payoff emotivo della sorpresa: Cirpo lo ascolta
+ da solo, a casa, e capisce che il gruppo sapeva. Cameo
+ di Fra Bortolo + rivelazione del legame con Julia.]
+
+"Ah, Santa Margherita... [risatina] Mòneghi mii, lassème
+contar. Da zóvene, mi e Fra Bortolo — che el Signor lo
+gàbia in gloria, anca se no se lo merita — vegnévimo qua
+ogni sera. Lu el diséva: 'Celestino, xe studio dei moti
+celesti.' E mi: 'Bortolo, i unici corpi celesti che ti
+studi i gà do gambe e 'na cuffia.' [ride] Eh, jera altri
+tempi.
+
+Ma scoltè, perché 'sto campo no xe un campo qualunque.
+Santa Margherita — quela de la lastra — la xe stà ingiotìa
+intiera dal drago, e la xe sortìa fora viva, sana, senza
+un graffio. Capì la metafora, fioi? Gh'è di chi entra
+dentro 'na bestia granda — l'amor, el matrimonio,
+ciamàdelo come volè — e par che el sia la fin. E invece
+se ghe esce fora pì vivi de prima. [sospiro]
+
+E adesso parlo a ti, novizo. Sì, propio a ti, Cirpo. Ti
+credi che no sàpia? In sto campo qua ti ghe à messo i pie
+tante de quele volte... ma 'na sera in particolar, qua,
+ti gà incontrà ela. La tosa che 'desso ti spóse. Mi te
+vardavo da soto le piere, fioi, e gò pensà: varda 'sto
+mona che gà sempre fretta de tornar a casa — e no'l sa
+gnancora che la casa la xe propio quela tosa lì davanti.
+[risatina commossa]
+
+La santa esce viva da la bestia, Cirpo. E ti, da scapolo,
+ti esci sposo — e ti esci mejo. Ostrega, varda che roba
+che te gò dito. Bortolo, dame da bever che me sgiónfo.
+Andè, fioi — godève sto campo. El xe sacro, ma de un sacro
+che sa de spritz e de prima volta."
+
+CONTESTO STORICO REALE
+──────────────────────
+- Campo Santa Margherita (Dorsoduro) è uno dei campi più
+  ampi e vivi di Venezia, storicamente popolare e mercantile,
+  oggi cuore della vita serale e studentesca.
+- La casa bassa isolata al centro del campo era la sede
+  della Scuola dei Varoteri (corporazione dei conciatori di
+  pelli/pellicciai); porta una lastra scolpita con Santa
+  Margherita.
+- Santa Margherita di Antiochia: secondo la leggenda fu
+  inghiottita da un drago e ne uscì illesa — iconografia
+  classica della santa col drago.
+- Il campanile della chiesa di Santa Margherita è mozzato
+  (troncato): elemento riconoscibile del campo. (Piano B
+  dell'enigma, vedi ancora_3.md.)
+- Fra Celestino è inventato; la Scuola dei Varoteri e
+  l'agiografia di Santa Margherita sono storicamente reali.
+
+IL VOSTRO RICORDO (placeholder)
+───────────────────────────────
+[FOTO: gruppo col primo spritz nel campo;
+ + foto speciale di Cirpo nel punto dell'incontro]
+Caption: "Il primo spritz, ore ~12:00 — e dove tutto è iniziato"
+Inside joke: qui Cirpo ha conosciuto Julia (rivelato
+  nell'extended cut, sorpresa per lo sposo)
+```
+
+### Capitolo IV — Le Zattere (secondo spritz, alticcia)
 
 ```
 TESTO ESTESO DI FRA CELESTINO
 ─────────────────────────────
-[L'audio breve della main quest era 22 secondi.
- L'extended cut dura 2 minuti.
- Fra Celestino racconta nel dettaglio:]
+[L'audio breve della main quest è ~24 sec (la sosta è lunga,
+ ~30 min seduti, ma l'audio-enigma resta corto). L'extended cut dura ~2 min.
+ Fra Celestino, alticcio per il secondo spritz, racconta:]
 
-- L'episodio con Fra Bortolo e le tose
-- Una scommessa persa al gioco delle bocche
+- L'episodio con Fra Bortolo e una scommessa persa al gioco
+  delle bocce (NON le tose — quelle sono ora a S.Margherita)
 - Una sera ubriaco con un pescatore di Burano
-- Riflessione seria sulla marea che divide la città
+- Riflessione seria sulla marea che divide la città in due
+  (lo Sziget NON è più qui — spostato all'Ancora 6, dove il
+   tema "perdita del conto delle ore" calza meglio)
 - Battuta finale sullo sposo (con riferimento a Cirpo)
 
 CONTESTO STORICO REALE
@@ -350,9 +427,163 @@ CONTESTO STORICO REALE
 
 IL VOSTRO RICORDO (placeholder)
 ───────────────────────────────
-[FOTO: gruppo seduto al sole alle Zattere]
-Caption: "Il primo spritz, ore ~12:00"
-Inside joke: da completare dopo l'evento
+[FOTO: gruppo affacciato sull'acqua, la Giudecca di fronte]
+Caption: "Il secondo spritz sull'acqua, ore ~13:00"
+(Inside joke Sziget spostato all'Ancora 6 / "L'ora ciuca")
+```
+
+### Capitolo V — Il Passaggio (Ponte dell'Accademia) — DEFINITO
+
+```
+AUDIO EXTENDED CUT (~130 sec) — TESTO DEFINITIVO
+─────────────────────────────────────────────────
+[Tappa drammatica/breve in main quest (~20 sec). L'extended
+ cut è il payoff su TARCH IL LENTO + la storia vera del ponte.
+ Registro: riflessivo-affettuoso, NON alticcio.]
+
+"Ah, el ponte de legno... [sospiro] Fioi, lassème dir 'na
+roba. Sto ponte el jera nato par star qua 'na stagion — do,
+al massimo. 'Na roba de passagio, 'na pareta provisoria, in
+atesa de qualcosa de pì degno, de pì de piera. E invece? Xe
+passà i ani, xe passà el fero, xe passà chi gavéa prèssa — e
+lu, el legno ùmile, el xe ancora qua. Lo gà rifà, asse par
+asse, ma no i lo gà mai cavà. [risatina]
+
+Ostrega, capì la lession? A Venezia — e mi de Venezia me ne
+intendo — no reze sempre quel che par fato par durar. Reze
+quel che no gà fissa de andar via. Quel che no gà prèssa.
+
+E qua, fioi, parlo de uno de vu. El Tarch. Sì, parlo de ti,
+che ti rivi sempre par ultimo, che el grupo el te speta in
+cao a ogni cale. I altri i ride: 'el Tarch, el Tarch, sempre
+indrio.' Ma scoltème: in sto ponte gh'è 'na doga sola, ciara,
+messa par ultima, ani dopo le altre — e quela lì la reze de
+pì de tute. Perché la xe rivà co' calma, ben piantà, sensa
+fretta. El Tarch el xe quela doga lì. Chi va pian, va san, e
+va lontan. El rivarà dopo de tuti — ma el rivarà, e el
+resterà. [sospiro affettuoso]
+
+E ti, novizo? Ti gà sempre 'vudo prèssa de tornar a casa.
+Beh: stavolta no scampar. Sto passagio qua — el matrimonio —
+el par provisorio a chi gà paura, ma el xe la roba che reze
+de pì, se ti lo lassi posàr ben. Bortolo el ghe diséva: 'tut
+quel che dura, prima el par che no podarà durar.' El gavéa
+razon, el mona, par 'na volta. Andè, fioi — passè el ponte,
+ma sensa córer."
+
+[Possibile cameo Fra Bortolo, coda nasale:
+ "Mi son rivà tardi anca al me funeral, fra."]
+
+CONTESTO STORICO REALE
+──────────────────────
+- Il Ponte dell'Accademia è uno dei quattro ponti sul Canal
+  Grande ed è l'unico in legno.
+- L'attuale ponte in legno fu costruito nel 1933 (ing.
+  Eugenio Miozzi) come struttura PROVVISORIA, in sostituzione
+  del ponte in ferro austriaco del 1854 ritenuto inadatto.
+  Doveva essere temporaneo: non fu mai sostituito.
+- È stato più volte restaurato e ricostruito fedelmente
+  (notevole intervento negli anni '80), mantenendo l'aspetto
+  in legno: "il provvisorio diventato eterno".
+- ANACRONISMO VOLUTO: Fra Celestino (XIII sec.) parla di un
+  ponte del XX sec. Coerente con la finzione: il manoscritto
+  è "riemerso" e il frate parla del legno / del passaggio
+  come essenza atemporale. Non sottolineare le date in gioco;
+  vivono solo qui e nella nota dell'Archivista.
+- Fra Celestino è inventato; la storia del ponte provvisorio
+  e delle sue ricostruzioni è storicamente accurata.
+
+IL VOSTRO RICORDO (placeholder)
+───────────────────────────────
+[FOTO: gruppo in mezzo al ponte di legno, il Canal Grande
+ alle spalle; + eventuale foto di Tarch che arriva per ultimo]
+Caption: "Il passaggio, ore ~14:15 — e Tarch che ci raggiunge"
+Inside joke: Tarch il lento (l'asse messa per ultima è quella
+  che regge di più)
+```
+
+### Capitolo VI — Il Cuore (Rialto · orologio di San Giacometto) — DEFINITO
+
+```
+AUDIO EXTENDED CUT (~140 sec) — TESTO DEFINITIVO
+─────────────────────────────────────────────────
+[Tappa sociale + 🍸 CICCHETTI #2 in main quest (~22 sec). 
+ L'extended cut è il payoff su SZIGET + cameo Varta + la
+ storia vera dell'orologio. Registro: ALTICCIO, picco di
+ allegria della giornata, ma con la malinconia tenera del
+ frate sul finale. Fonte testo: ancora_6.md § 9.]
+
+"Eh, Rialto... [risatina] Mòneghi mii, lassème star un atimo
+qua, col bicer in man. Sto orologio, vedè, el xe del
+Quattrocento, co' 'na lancetta sola a forma de razzo de sol.
+E el conta a la veneziana: el zorno intiero, da un tramonto a
+l'altro, vintiquatro ore in t'un giro solo — no come 'desso
+che spacè tuto in metà. Eh, ma 'l xe sempre stà 'mbriago, sto
+orologio: nissun mercante se ghe fidava, i ascoltava le
+campane, mìa lu. [ride]
+
+Ma scoltème, perché mi 'sto razzo de sol che gira lento
+lento... el me ricorda 'na roba che gò visto nel manoscritto.
+Un campo de tende, su 'na riva de un gran fiume, lontan de
+qua. E là gh'era anca vui, fioi — sì, vui! E gavè perso el
+conto de le ore istesso de 'sto orologio mato. Né zorno né
+note: solo musica, ombre e amici. Ostrega, che invidia che
+gò, vecio frate che son. [sospiro]
+
+E ti, Varta — sì, propio ti col telefono sempre morto — ti
+gèri l'unico col tempo giusto: zero. Batarìa a tera, come
+l'orologio. Forse ti gèri el pì venezian de tuti, che no te
+interessava che ora che jera. [risatina]
+
+El professor, intanto — quel che me tradùs, l'Archivista — el
+sa benissimo de 'sta storia de le ore. Anca massa ben, par
+mi. A volte me par che el sia qua tra de vui... ma no digo
+altro. [colpo di tosse furbo]
+
+Andè, fioi. A Rialto se conta tuto: i schei, l'oro, le ore.
+Ma gh'è 'na roba che no se conta e no se pesa — e xe propio
+quela che ve gò portà a trovar tuto el zorno. Dame n'altra
+ombra, Bortolo, va'."
+
+[Possibile cameo Fra Bortolo, coda nasale:
+ "Vintiquatro ore, fra, e ti te ghe n'à bevudo par quaranta."]
+
+CONTESTO STORICO REALE
+──────────────────────
+- San Giacomo di Rialto (San Giacometto) è, per tradizione, la
+  chiesa più antica di Venezia (consacrazione leggendaria il 25
+  marzo 421; prime attestazioni documentate XI-XII sec.).
+- Sulla facciata, orologio monumentale: costruito nel 1410, con
+  il "razzo d'oro" delle ore completato nel 1422 (maestro Polo
+  Pugliese) e rifatto nel 1749. Quadrante diviso in 24 ore in
+  cifre romane, segna l'ora "all'italiana" (giornata contata dal
+  tramonto), con un'unica lancetta a forma di raggio di sole e
+  un leone marciano al centro.
+- Serviva a regolare gli orari di apertura e chiusura del
+  vicinissimo mercato di Rialto.
+- È celebre da secoli per la sua INAFFIDABILITÀ: segna spesso
+  l'ora sbagliata; i mercanti si fidavano delle campane, non di
+  lui. Da qui la battuta "sempre 'mbriago come mi".
+- La chiesa fu sede della Scuola degli Oresi (orafi), col
+  Sotoportego dei Oresi accanto: il "numero, il peso, l'oro".
+- ANACRONISMO VOLUTO: Fra Celestino (XIII sec.) parla di un
+  orologio del XV sec. Coerente con la finzione del manoscritto
+  "riemerso" — il tempo del mercato come essenza atemporale. Le
+  date vivono solo qui, non in main quest.
+- Fra Celestino è inventato; l'orologio e la sua storia sono
+  storicamente accurati.
+
+IL VOSTRO RICORDO (placeholder)
+───────────────────────────────
+[FOTO: gruppo in Campo San Giacometto coi cicchetti e le
+ ombre in mano, l'orologio a 24 ore in alto sullo sfondo;
+ + eventuale foto di Varta col telefono morto in mano]
+Caption: "Il cuore, ore ~16:00 — e nessuno sapeva davvero
+  che ora fosse"
+Inside joke: Sziget (il campo di tende sul gran fiume dove si
+  è perso il conto delle ore, come l'orologio matto) + Varta
+  (batteria a terra come l'orologio: il più veneziano di tutti)
+Sblocco bonus: easter egg "L'ora ciuca" (INDIZIO 0quinquies)
 ```
 
 -----
@@ -460,6 +691,11 @@ TARCH (Carlo) — IL SAGGIO LENTO
    Fra Celestino: "Chi va piano, va sano e va lontano.
      El Tarch arriverà dopo de tuti — ma arriverà."
    Citazione: [da aggiungere]
+   Lore segreto: collegato all'easter egg "La doga del Tarch"
+     (Ancora 5, Ponte dell'Accademia). È l'asse di legno messa
+     per ultima sul ponte provvisorio: arrivata dopo tutte le
+     altre, ma quella che regge di più. Il ponte "provvisorio
+     che è diventato eterno" è il suo emblema.
 
 BOBO (Nicola) — IL SILENZIOSO
    Statistiche:
@@ -624,12 +860,97 @@ NOTA DESIGN: tematicamente vicino all'Indizio 4 (Consiglio
          nel payoff del side content (filo "cancellazione/
          sparizione/denuncia").
 
+INDIZIO 0ter: "EL DRAGO DE LA SANTA" (Ancora 3 — l'incontro)
+─────────────────────────────────────────────────────
+Trigger: nella scena pixel art dell'Ancora 3 (Santa
+         Margherita), il DRAGO sulla lastra dei Varoteri
+         è tappabile, NON evidenziato. È lo stesso
+         dettaglio che il gruppo osserva per l'enigma.
+Dove: la creatura/drago scolpito sulla lastra della casa
+      bassa al centro del campo.
+Sblocca (Fase 2): segmento extended cut con la RIVELAZIONE
+         del legame Cirpo + Julia (qui si sono conosciuti)
+         + storia vera Scuola dei Varoteri e leggenda di
+         Santa Margherita + collegamento alla dedica finale
+         a Julia.
+NOTA DESIGN: è l'easter egg più carico emotivamente del
+         gioco. Chi lo trova sblocca il cuore del regalo.
+
+INDIZIO 0quater: "LA DOGA DEL TARCH" (Ancora 5 — il passaggio)
+─────────────────────────────────────────────────────
+Trigger: nella scena pixel art dell'Ancora 5 (Ponte
+         dell'Accademia), una doga del corrimano in legno
+         con un NODO ben visibile nel legno (il parapetto è
+         in legno pieno: sopralluogo confermato, NESSUNA
+         asse rappezzata), è tappabile, NON evidenziata.
+         Eco dell'audio: "el xe ancora qua, che no'l gà mai
+         'vudo prèssa de cascàr".
+Dove: sul corrimano in legno, lato Dorsoduro, una doga con
+      un nodo evidente.
+Sblocca (Fase 2): segmento extended cut con l'aggancio
+         esplicito a TARCH IL LENTO (il ponte intero
+         "doveva durar 'na stagion e l'è ancora qua", come
+         il nodo che ha tenuto cent'anni; "chi va piano va
+         sano e va lontano") + storia vera del ponte
+         provvisorio del 1933 (nato temporaneo, mai
+         sostituito) + collegamento alla scheda bestiario
+         di Tarch.
+NOTA DESIGN: stessa meccanica della serie 0/0bis/0ter
+         (sprite tappabile sul dettaglio stesso
+         dell'enigma). È l'aggancio che mappa finalmente
+         l'inside joke "Tarch il lento" a un'ancora.
+
+INDIZIO 0quinquies: "L'ORA CIUCA" (Ancora 6 — il cuore)
+─────────────────────────────────────────────────────
+Trigger: nella scena pixel art dell'Ancora 6 (Rialto,
+         Campo San Giacometto), il QUADRANTE dell'orologio
+         a 24 ore sulla facciata della chiesa è tappabile,
+         NON evidenziato. È lo stesso dettaglio che il
+         gruppo osserva per l'enigma. Eco dell'audio:
+         "l'orologio xe sempre 'mbriago come mi".
+Dove: il grande orologio monumentale (lancetta unica a
+      raggio di sole) in alto sulla facciata.
+Sblocca (Fase 2): segmento extended cut con il riferimento
+         allo SZIGET (Fra Celestino "vede nel manoscritto"
+         un campo di tende su un gran fiume dove il gruppo
+         ha "perso il conto delle ore" come il suo orologio
+         ubriaco — invidia senile) + storia vera
+         dell'orologio del 1410/1422 di San Giacometto
+         (ora all'italiana, inaffidabilità leggendaria)
+         + cameo Varta ("batteria a terra come l'orologio:
+         forse il più veneziano di tutti") + entry glossario
+         "ciuca" e "ombra".
+NOTA DESIGN: stessa meccanica della serie 0/0bis/0ter/0quater
+         (sprite tappabile sul dettaglio stesso dell'enigma).
+         È l'aggancio che mappa finalmente lo SZIGET a
+         un'ancora (vedi Inside Joke Engine, punto 6).
+
+INDIZIO 0sexies: "VIETATO ORMEGGIARE" (Ancora 7 — la rivelazione)
+─────────────────────────────────────────────────────
+Trigger: nella scena pixel art dell'Ancora 7 (Fondamenta
+         della Misericordia), la targhetta "VIETATO
+         ORMEGGIARE" accanto alla bricola sul bordo acqua
+         è tappabile, NON evidenziata. Eco dell'audio:
+         "varda ben l'insegna".
+Dove: la targa + il palo d'ormeggio (bricola) in primo
+      piano, davanti al bàcaro Il Paradiso Perduto.
+Sblocca (Fase 2): segmento extended cut sul GIOCO àncora <->
+         ormeggio ("de tute le àncore, ghe n'è una sola che
+         no se tien: quela del scapolo") + OMAGGIO ai Pitura
+         Freska in chiave Fra Celestino (SENZA citarne i versi)
+         + dedica esplicita a Julia + entry glossario
+         "ormeggiare", "bricola", "ostarìa".
+NOTA DESIGN: chiude la serie per-ancora (0/0bis/.../0quinquies).
+         È anche l'indizio che, insieme agli altri, completa
+         il set e sblocca EL OTAVO SEGNO (achievement
+         "TOSI ME PORTEO CASA").
+
 INDIZIO 1: "LA BRICCOLA DELLE TRE TACCHE"
 ─────────────────────────────────────────
-Trigger: Fra Celestino in Ancora 3 (Zattere)
+Trigger: Fra Celestino in Ancora 4 (Zattere)
          "se uno de vu xe attento, vedrà na
           bricola col tre tacche. Ma no'l ve digo de pì."
-Dove: scena pixel art dell'Ancora 3, una briccola
+Dove: scena pixel art dell'Ancora 4 (Zattere), una briccola
       con un dettaglio diverso dalle altre
 Sblocca: storia extra sulle briccole veneziane
          + gag su Varta e la batteria scarica
@@ -641,7 +962,8 @@ Trigger: sprite di Fra Celestino con bottiglia
          (tappabile, non evidenziato)
 Sblocca: "ricetta segreta" dello spritz di Fra Celestino
          + storia di una sbornia storica al monastero
-         + riferimento allo Sziget ("anche lì bevevano così")
+         (NB: lo Sziget NON è più qui — payoff consolidato
+          su INDIZIO 0quinquies / Ancora 6)
 
 INDIZIO 3: "EL NOME DEA TOSA"
 ─────────────────────────────
@@ -666,11 +988,16 @@ Sblocca: mini-quest aggiuntiva a casa, porta a easter egg
          — forse: un "achievement" stile videogioco
            "TOSI ME PORTEO CASA — completato"
 
-INDIZIO 6: DA DEFINIRE (personalizzazione gruppo)
+INDIZIO 6: LIBERO (personalizzazione gruppo — da definire)
 ──────────────────────────────────────────────────
-Riservato per un riferimento specifico allo Sziget
-o a un altro momento della storia del gruppo.
-Da costruire quando arrivano altri inside joke.
+Lo Sziget — che prima viveva qui come riserva — è stato
+collocato sull'INDIZIO 0quinquies (Ancora 6, "L'ora ciuca"):
+fit tematico migliore (perdita del conto delle ore + seconda
+sosta alcolica). Questo slot resta LIBERO per un futuro
+inside joke o aneddoto del gruppo, da costruire quando ne
+arrivano altri.
+(NB: l'aggancio dell'Ancora 7 vive ora sull'INDIZIO 0sexies,
+"vietato ormeggiare". Questo slot 6 resta libero.)
 ```
 
 ### Tipologie di ricompense
@@ -744,24 +1071,68 @@ CONFERMATI
    → Caption nel diario fotografico
 
 4. Tarch il lento
-   → Fra Celestino lo difende ogni volta
-   → "Chi va piano" è il suo tema ricorrente
+   → Ancora 5 (Ponte dell'Accademia): aggancio DENIABLE in
+     main quest (Fra Celestino: "el xe ancora qua, che no'l
+     gà mai 'vudo prèssa de cascàr" → il ponte provvisorio-
+     ma-eterno = la cosa lenta che dura). NON nominare Tarch
+     in main quest.
+   → Metafora veicolante: l'asse di legno messa per ultima è
+     quella che regge di più. "Chi va piano va sano e va
+     lontano": arriva dopo tutti, ma arriva e resta.
+   → Extended cut Ancora 5: payoff esplicito su Tarch
+     (Fra Celestino lo difende, come da suo tema ricorrente).
+   → Sbloccato dall'easter egg "La doga del Tarch"
+     (INDIZIO 0quater, Ancora 5).
+   → Fra Celestino lo difende ogni volta; "Chi va piano" è
+     il suo tema ricorrente (vedi scheda bestiario Tarch).
+   NOTA DESIGN: deniable in main quest, payoff nel side
+     content — stesso schema degli altri agganci personali.
 
 5. Turpe + l'Archivista
    → Sono la stessa persona? Il gioco non lo dice mai.
    → Nel bestiario, le schede si somigliano troppo.
 
 6. Sziget Festival
-   → Fra Celestino lo cita nell'extended cut dell'Ancora 3
-     (le Zattere = fondamenta affacciata sull'acqua, come
-      l'isola sul Danubio)
+   → Fra Celestino lo cita nell'extended cut dell'Ancora 6
+     (Rialto): l'orologio a 24 ore "sempre 'mbriago" gli
+     ricorda un campo di tende su un gran fiume dove il
+     gruppo ha "perso il conto delle ore" — né giorno né
+     notte, solo musica, ombre e amici.
    → "Anche vui gavè vissudo su un'isola. Capì cosa vol dir."
+   → Sbloccato dall'easter egg "L'ora ciuca"
+     (INDIZIO 0quinquies, Ancora 6).
+   → Aggancio cameo: Varta ("batteria a terra come
+     l'orologio: forse il più veneziano di tutti").
+   NOTA SHIFT: prima era assegnato all'extended cut dell'Ancora
+     4 (Zattere). Spostato a 6 — alle Zattere il secondo spritz
+     è breve/in piedi e mal si sposa col tema "perdita del tempo
+     + festa", che vuole la sosta lunga (i cicchetti di Rialto).
 
 7. Cirpo (e Zuppo) hanno vissuto a San Giacomo dell'Orio
    → Ancora 2: aggancio DENIABLE ("ti che qua ti ghe sì stà")
    → Extended cut Ancora 2: payoff esplicito + tema "la casa
      no xe un posto, xe chi te speta drento" (lega al matrimonio)
    → Diario fotografico: foto speciale di Cirpo/Zuppo nel campo
+
+8. Cirpo ha conosciuto Julia a Campo Santa Margherita
+   Origine: è il campo dove lo sposo ha incontrato la sposa.
+     Cuore emotivo dell'intero gioco.
+   → Ancora 3: aggancio DENIABLE ("certi incontri te cambia 'na
+     vita... ma no digo altro" + "ti che qua ti ghe sì stà").
+     NON esplicitare Julia in main quest (spoiler della sorpresa
+     + imbarazzo pubblico dello sposo davanti al gruppo).
+   → Metafora veicolante: Santa Margherita esce viva dal drago
+     = chi entra nel matrimonio ne esce più vivo. Deniable e
+     affettuosa, nella voce-da-osteria di Fra Celestino.
+   → Extended cut Ancora 3: RIVELAZIONE esplicita ("qua ti gà
+     incontrà ela"). È il momento pelle-d'oca del side content:
+     Cirpo lo ascolta da solo, a casa, e capisce che sapevate.
+   → Sbloccato dall'easter egg "El drago de la santa" (Ancora 3).
+   → Specchio generazionale: Fra Celestino guardava le tose in
+     questo stesso campo (ricordo "tose" spostato qui da Zattere).
+   → Eco col finale: prepara Ancora 7 ("chi te speta drento").
+   NOTA DESIGN: l'inside joke più delicato del gioco. Tutto in
+     main quest resta velato; il payoff è nel post-evento.
 
 DA RACCOGLIERE
 ──────────────
@@ -786,7 +1157,7 @@ CONTENUTO   │ - L'audio della main quest INCLUSO
             │ - + riferimenti personalizzati al gruppo:
             │     Cirpo, Varta, Tarch, Vendra, Bobo, Mick,
             │     Turpe, Zuppo — ciascuno almeno un cameo
-            │ - + riferimento allo Sziget (Ancora 3 o 5)
+            │ - + riferimento allo Sziget (Ancora 6)
 PROD        │ Stesse impostazioni audio della main quest
             │ Possibile seconda voce per Fra Bortolo
 ```
@@ -840,11 +1211,13 @@ PRIMA DELL'EVENTO          STATO
 ──────────────────────────────────────────────
 □ Profilo sposo            ✓ COMPLETATO
 □ Profilo gruppo           ✓ COMPLETATO (soprannomi + ruoli)
-□ Inside joke principali   ⚠ PARZIALE (3 confermati: "Tosi me
+□ Inside joke principali   ⚠ PARZIALE (4 confermati: "Tosi me
                              porteo casa" + "nel Cristo" + antipatia
-                             francesi; altri da raccogliere)
+                             francesi + Julia/S.Margherita; altri da
+                             raccogliere)
 □ Aneddoti memorabili      ⚠ PARZIALE (Sziget confermato; Cirpo/Zuppo
-                             a San Giacomo dell'Orio confermato)
+                             a San Giacomo dell'Orio confermato;
+                             incontro Cirpo+Julia a S.Margherita confermato)
 □ Citazioni gruppo         ✗ DA RACCOGLIERE
 □ Tratti di Julia          ✗ DA RACCOGLIERE (opzionale)
 
@@ -856,6 +1229,11 @@ DURANTE L'EVENTO
 □ Documentare le richieste di Varta (caricabatterie)
 □ Catturare "la prima cosa che dice Bobo"
 □ Foto di Cirpo/Zuppo nel loro vecchio campo (Ancora 2)
+□ Foto speciale all'Ancora 3 (S.Margherita): Cirpo nel campo
+   dove ha conosciuto Julia — SENZA spoilerargli il perché
+□ Foto all'Ancora 5 (Ponte dell'Accademia): il gruppo sul
+   ponte di legno + se possibile Tarch che arriva per ultimo
+   (materiale per l'easter egg "La doga del Tarch")
 
 DOPO L'EVENTO
 ──────────────────────────────────────────────
