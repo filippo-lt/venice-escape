@@ -31,12 +31,12 @@ describe("BootSequence", () => {
     expect(screen.queryByText("SCUMM v5.1.42 — Loading...")).not.toBeInTheDocument();
   });
 
-  it("calls onDone after FULL_DURATION_MS in full mode", () => {
+  it("calls onDone after FULL_DURATION_MS (3500ms) in full mode — spec home_flow.md §Beat 1", () => {
     const onDone = vi.fn();
     render(<BootSequence mode="full" onDone={onDone} />);
     expect(onDone).not.toHaveBeenCalled();
     act(() => {
-      vi.advanceTimersByTime(5599);
+      vi.advanceTimersByTime(3499);
     });
     expect(onDone).not.toHaveBeenCalled();
     act(() => {
@@ -45,11 +45,15 @@ describe("BootSequence", () => {
     expect(onDone).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onDone after fast duration (1500ms) in fast mode", () => {
+  it("calls onDone after fast duration (800ms) in fast mode — spec §5 visitatore di ritorno", () => {
     const onDone = vi.fn();
     render(<BootSequence mode="fast" onDone={onDone} />);
     act(() => {
-      vi.advanceTimersByTime(1500);
+      vi.advanceTimersByTime(799);
+    });
+    expect(onDone).not.toHaveBeenCalled();
+    act(() => {
+      vi.advanceTimersByTime(1);
     });
     expect(onDone).toHaveBeenCalledTimes(1);
   });
@@ -120,5 +124,29 @@ describe("BootSequence", () => {
   it("renders the cursor in fast mode", () => {
     const { container } = render(<BootSequence mode="fast" onDone={vi.fn()} />);
     expect(container.querySelector(".cursor")).not.toBeNull();
+  });
+
+  it("cursor uses the shared anim-blink class (no local keyframes redefinition)", () => {
+    const { container } = render(<BootSequence mode="full" onDone={vi.fn()} />);
+    const cursor = container.querySelector(".cursor");
+    expect(cursor).not.toBeNull();
+    expect(cursor?.className).toContain("anim-blink");
+  });
+
+  it("boot line delays match the spec timing table (0.0, 0.5, 1.0, 1.6, 2.3, 2.8, 3.2)", () => {
+    const { container } = render(<BootSequence mode="full" onDone={vi.fn()} />);
+    const lines = Array.from(
+      container.querySelectorAll<HTMLElement>(".boot-line"),
+    );
+    const delays = lines.map((el) => el.style.animationDelay);
+    expect(delays).toEqual([
+      "0s",
+      "0.5s",
+      "1s",
+      "1.6s",
+      "2.3s",
+      "2.8s",
+      "3.2s",
+    ]);
   });
 });
