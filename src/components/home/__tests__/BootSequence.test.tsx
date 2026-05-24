@@ -31,12 +31,12 @@ describe("BootSequence", () => {
     expect(screen.queryByText("SCUMM v5.1.42 — Loading...")).not.toBeInTheDocument();
   });
 
-  it("calls onDone after FULL_DURATION_MS (3500ms) in full mode — spec home_flow.md §Beat 1", () => {
+  it("calls onDone after FULL_DURATION_MS (4200ms) in full mode — ultima riga deve finire il typewriter (3.2s + 0.6s) + hold 0.4s", () => {
     const onDone = vi.fn();
     render(<BootSequence mode="full" onDone={onDone} />);
     expect(onDone).not.toHaveBeenCalled();
     act(() => {
-      vi.advanceTimersByTime(3499);
+      vi.advanceTimersByTime(4199);
     });
     expect(onDone).not.toHaveBeenCalled();
     act(() => {

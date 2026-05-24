@@ -16,7 +16,7 @@ interface BootSequenceProps {
  * → skip. In modalità `fast` mostra solo l'ultima riga per ~0.8s.
  */
 // Timing allineato alla tabella in docs/home_flow.md §Beat 1
-// (t = 0.0, 0.5, 1.0, 1.6, 2.3, 2.8, 3.2; fade-out a t=3.5s).
+// (t = 0.0, 0.5, 1.0, 1.6, 2.3, 2.8, 3.2).
 const FULL_LINES: { text: string; delay: number; cls?: string; width: number }[] = [
   { text: "SCUMM v5.1.42 — Loading...", delay: 0.0, width: 28 },
   { text: "Reading manuscript from disk A:\\", delay: 0.5, width: 33 },
@@ -27,8 +27,10 @@ const FULL_LINES: { text: string; delay: number; cls?: string; width: number }[]
   { text: "OK — ready to play", delay: 3.2, cls: "with-cursor", width: 19 },
 ];
 
-// Spec: fade-out boot a ~3.5s (full) / ~0.8s (fast, ritorno).
-const FULL_DURATION_MS = 3500;
+// L'ultima riga inizia a t=3.2s con typewriter 600ms (→ termina a 3.8s),
+// poi piccolo hold di 400ms per leggere "OK — ready to play" prima del cutover.
+// Lo spec indica 3.5s ma quel taglio interrompe l'ultima riga a metà animazione.
+const FULL_DURATION_MS = 4200;
 const FAST_DURATION_MS = 800;
 
 export default function BootSequence({ mode, onDone }: BootSequenceProps) {
@@ -72,7 +74,7 @@ export default function BootSequence({ mode, onDone }: BootSequenceProps) {
         (tap to skip)
       </p>
 
-      <style jsx>{`
+      <style jsx global>{`
         .boot-line {
           opacity: 0;
           animation: boot-line-in 600ms steps(20, end) forwards;
