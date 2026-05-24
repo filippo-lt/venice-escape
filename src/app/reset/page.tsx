@@ -67,8 +67,12 @@ export default function ResetPage() {
           disabled={state !== "done"}
           className="mt-6 flex min-h-14 w-full items-center justify-center border-2 border-black bg-verb-yellow px-5 py-3 text-center font-pixel text-[11px] tracking-widest text-black shadow-[3px_3px_0_var(--color-bg-deep)] hover:bg-sand active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
         >
-          TORNA ALL&apos;INIZIO →
+          ★ RIVEDI INTRO →
         </button>
+
+        <p className="mt-3 text-center font-mono text-sm italic text-stone-light">
+          (Il boot animato e la title screen ripartono da zero.)
+        </p>
       </div>
     </main>
   );

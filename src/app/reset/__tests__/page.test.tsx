@@ -34,10 +34,10 @@ describe("ResetPage /reset", () => {
     ).toBeInTheDocument();
   });
 
-  it("navigates to / when the TORNA ALL'INIZIO button is clicked", async () => {
+  it("navigates to / when the RIVEDI INTRO button is clicked", async () => {
     const user = userEvent.setup();
     render(<ResetPage />);
-    const btn = screen.getByRole("button", { name: /TORNA ALL/i });
+    const btn = screen.getByRole("button", { name: /RIVEDI INTRO/i });
     expect(btn).not.toBeDisabled();
     await user.click(btn);
     expect(pushMock).toHaveBeenCalledWith("/");

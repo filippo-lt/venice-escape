@@ -19,7 +19,7 @@ describe("AnchorMarker", () => {
     expect(el).toHaveAttribute("data-state", "locked");
     expect(el).toHaveAttribute("data-locked", "true");
     expect(el.getAttribute("aria-label")).toMatch(/bloccata/i);
-    expect(el.className).toMatch(/opacity-30/);
+    expect(el.className).toMatch(/grayscale/);
     expect(el.className).toMatch(/pointer-events-none/);
     expect(el.style.top).toBe("10%");
     expect(el.style.left).toBe("20%");
@@ -39,13 +39,13 @@ describe("AnchorMarker", () => {
     expect(link).toHaveAttribute("href", "/ancora/2");
     expect(link).toHaveAttribute("data-state", "unlocked");
     expect(link.className).toMatch(/animate-pulse/);
-    expect(link.className).toMatch(/bg-ocra/);
+    expect(link.className).toMatch(/ring-ocra/);
     expect(link.getAttribute("aria-label")).toBe(
       "Ancora 2 — San Giacomo dell'Orio",
     );
-    // tap target: classi min-h-11 e min-w-11 garantiscono ≥ 44x44px
-    expect(link.className).toMatch(/min-h-11/);
-    expect(link.className).toMatch(/min-w-11/);
+    // tap target: classi min-h-14 e min-w-14 garantiscono ≥ 44x44px (56px)
+    expect(link.className).toMatch(/min-h-14/);
+    expect(link.className).toMatch(/min-w-14/);
   });
 
   it("renders the SOLVED state as a link with the gold variant and a fragment badge", () => {
@@ -62,7 +62,7 @@ describe("AnchorMarker", () => {
     expect(link.tagName).toBe("A");
     expect(link).toHaveAttribute("href", "/ancora/5");
     expect(link).toHaveAttribute("data-state", "solved");
-    expect(link.className).toMatch(/bg-verb-yellow/);
+    expect(link.className).toMatch(/ring-verb-yellow/);
     expect(link.getAttribute("aria-label")).toMatch(/risolta/);
     expect(link.getAttribute("aria-label")).toMatch(/frammento Z/);
 

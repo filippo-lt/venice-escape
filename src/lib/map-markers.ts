@@ -22,13 +22,13 @@ export type MapMarkerPosition = {
 };
 
 export const MAP_MARKERS: Record<number, MapMarkerPosition> = {
-  1: { top: 15, left: 32 },
-  2: { top: 35, left: 27 },
-  3: { top: 37, left: 53 },
-  4: { top: 37, left: 75 },
-  5: { top: 58, left: 47 },
-  6: { top: 63, left: 56 },
-  7: { top: 75, left: 62 },
+  1: { top: 20, left: 41 },
+  2: { top: 32, left: 30 },
+  3: { top: 35, left: 60 },
+  4: { top: 41, left: 75 },
+  5: { top: 56, left: 47 },
+  6: { top: 63, left: 53 },
+  7: { top: 76, left: 67 },
 };
 
 export const MAP_MARKER_IDS: readonly number[] = [1, 2, 3, 4, 5, 6, 7];

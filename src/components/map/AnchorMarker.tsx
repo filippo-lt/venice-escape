@@ -17,18 +17,25 @@ type AnchorMarkerProps = {
   label: string;
 };
 
+// Marker trasparente di 56x56 px (≥ tap target 44x44) che AVVOLGE l'icona
+// dipinta sulla mappa, invece di coprirla con un quadrato pieno. Lo stato
+// è comunicato da bordo/scrim/glow, non dal background.
 const BASE_BUTTON =
   "absolute -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center " +
-  "min-h-11 min-w-11 h-11 w-11 border-2 font-pixel text-[10px] tracking-widest " +
-  "shadow-[2px_2px_0_var(--color-bg-deep)] select-none";
+  "min-h-14 min-w-14 h-14 w-14 rounded-full font-pixel text-[10px] tracking-widest " +
+  "select-none";
 
 const STATE_CLASSES: Record<AnchorMarkerState, string> = {
   locked:
-    "border-stone-dark bg-stone-dark/60 text-stone-light/70 opacity-30 pointer-events-none",
+    "bg-bg-deep/55 text-transparent pointer-events-none [filter:grayscale(0.7)]",
   unlocked:
-    "border-black bg-ocra text-black hover:bg-ocra-light active:translate-x-[2px] active:translate-y-[2px] active:shadow-none animate-pulse",
+    "ring-2 ring-ocra ring-offset-1 ring-offset-transparent text-transparent " +
+    "shadow-[0_0_12px_2px_rgba(214,166,71,0.55)] animate-pulse " +
+    "hover:ring-ocra-light active:translate-x-[1px] active:translate-y-[1px]",
   solved:
-    "border-black bg-verb-yellow text-black hover:bg-sand active:translate-x-[2px] active:translate-y-[2px] active:shadow-none",
+    "ring-2 ring-verb-yellow ring-offset-1 ring-offset-transparent text-transparent " +
+    "shadow-[0_0_10px_1px_rgba(232,200,120,0.7)] " +
+    "hover:ring-sand active:translate-x-[1px] active:translate-y-[1px]",
 };
 
 /**
