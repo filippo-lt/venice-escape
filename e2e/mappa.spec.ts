@@ -3,8 +3,9 @@ import { makeMidQuest, seedProgress } from "./fixtures/progress";
 
 // Selettori adattabili: Track A potrebbe usare attributi diversi.
 // Se la convenzione cambia, basta aggiornare qui.
+// Track A espone `data-testid="marker-{1..7}"` + `data-state`.
 const SELECTORS = {
-  marker: '[data-testid="anchor-marker"]',
+  marker: '[data-testid^="marker-"][data-state]',
   solvedState: '[data-state="solved"]',
   lockedState: '[data-state="locked"]',
   unlockedState: '[data-state="unlocked"]',
@@ -25,15 +26,10 @@ test.describe("mappa", () => {
     await page.goto("/mappa");
 
     const markers = page.locator(SELECTORS.marker);
-    // Se la pagina non ha ancora gli attributi data-testid attesi,
-    // skippiamo invece di fallire fragorosamente.
-    const total = await markers.count();
-    test.skip(
-      total === 0,
-      "Nessun [data-testid='anchor-marker'] trovato — Track A usa naming diverso?",
-    );
+    // Attendi che lo store esterno idrati (vedi MapPage useSyncExternalStore).
+    await markers.first().waitFor({ state: "attached", timeout: 5000 });
 
-    expect(total).toBe(7);
+    await expect(markers).toHaveCount(7);
 
     const solved = page.locator(`${SELECTORS.marker}${SELECTORS.solvedState}`);
     await expect(solved).toHaveCount(3);
