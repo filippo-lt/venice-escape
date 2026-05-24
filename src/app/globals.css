@@ -111,3 +111,56 @@ body {
 .animate-pulse-scumm {
   animation: pulse-scumm 1.5s ease-in-out infinite;
 }
+
+/* ============================================
+   Keyframe condivisi — home / transizioni / finale
+   Vedi implementation_plan.md § Fase 0.4
+   ============================================ */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.55; }
+  47% { opacity: 0.95; }
+  60% { opacity: 0.7; }
+}
+
+@keyframes tide-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow:
+      2px 2px 0 var(--color-blood),
+      4px 4px 0 var(--color-bg-deep),
+      0 0 6px rgba(184, 132, 42, 0);
+  }
+  50% {
+    text-shadow:
+      2px 2px 0 var(--color-blood),
+      4px 4px 0 var(--color-bg-deep),
+      0 0 14px rgba(184, 132, 42, 0.55);
+  }
+}
+
+@keyframes crt-collapse {
+  0%   { transform: scaleY(1);    filter: brightness(1); }
+  70%  { transform: scaleY(0.02); filter: brightness(2.5); }
+  100% { transform: scaleY(0);    filter: brightness(0); }
+}
+
+.anim-blink         { animation: blink 1s infinite; }
+.anim-flicker       { animation: flicker 2.4s ease-in-out infinite; }
+.anim-tide          { animation: tide-drift 6s ease-in-out infinite; }
+.anim-glow          { animation: glow-pulse 2.8s ease-in-out infinite; }
+.anim-crt-collapse  { animation: crt-collapse 400ms ease-in forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-blink,
+  .anim-flicker,
+  .anim-tide,
+  .anim-glow,
+  .anim-crt-collapse {
+    animation: none !important;
+  }
+}
