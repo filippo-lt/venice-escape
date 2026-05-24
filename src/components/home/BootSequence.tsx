@@ -17,16 +17,21 @@ interface BootSequenceProps {
  */
 const FULL_LINES: { text: string; delay: number; cls?: string; width: number }[] = [
   { text: "SCUMM v5.1.42 — Loading...", delay: 0.0, width: 28 },
-  { text: "Reading manuscript from disk A:\\", delay: 0.5, width: 33 },
-  { text: "Checking memory... 640K OK", delay: 1.0, width: 26 },
-  { text: "WARNING: file corrupted — anno 1297", delay: 1.6, cls: "glitch", width: 36 },
-  { text: "Recovering data from monastery_torcello.dat", delay: 2.3, width: 43 },
-  { text: ". . .", delay: 2.8, width: 5 },
-  { text: "OK — ready to play", delay: 3.2, cls: "with-cursor", width: 19 },
+  { text: "Reading manuscript from disk A:\\", delay: 0.8, width: 33 },
+  { text: "Checking memory... 640K OK", delay: 1.6, width: 26 },
+  { text: "WARNING: file corrupted — anno 1297", delay: 2.4, cls: "glitch", width: 36 },
+  { text: "Recovering data from monastery_torcello.dat", delay: 3.2, width: 43 },
+  { text: ". . .", delay: 4.0, width: 5 },
+  { text: "OK — ready to play", delay: 4.6, cls: "with-cursor", width: 19 },
 ];
 
-const FULL_DURATION_MS = 3500;
-const FAST_DURATION_MS = 800;
+// Tempi derivati: l'ultima riga è completamente visibile (typewriter)
+// + un piccolo "hold" prima del cutover al title screen.
+const TYPEWRITER_MS = 600;
+const HOLD_MS = 400;
+const LAST_LINE = FULL_LINES[FULL_LINES.length - 1];
+const FULL_DURATION_MS = Math.round(LAST_LINE.delay * 1000 + TYPEWRITER_MS + HOLD_MS);
+const FAST_DURATION_MS = 1500;
 
 export default function BootSequence({ mode, onDone }: BootSequenceProps) {
   const doneRef = useRef(false);
@@ -65,7 +70,7 @@ export default function BootSequence({ mode, onDone }: BootSequenceProps) {
           <BootLine text="OK — ready to play" delay={0} cls="with-cursor" width={19} />
         )}
       </div>
-      <p className="absolute bottom-6 left-0 right-0 text-center font-mono text-sm text-stone-light opacity-40 sm:text-base">
+      <p className="absolute bottom-6 left-0 right-0 text-center font-mono text-sm text-stone-light opacity-60 sm:text-base">
         (tap to skip)
       </p>
 
