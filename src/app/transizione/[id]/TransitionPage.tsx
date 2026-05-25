@@ -89,7 +89,7 @@ function TransitionPageInner({ anchor, next, outroAudio }: Props) {
         </h1>
 
         {/* Fragment reveal */}
-        <FragmentReveal letter={anchor.fragment} />
+        <FragmentReveal letter={anchor.fragment} image={anchor.fragmentImage} />
 
         {/* Inventario inline */}
         <InlineInventory
