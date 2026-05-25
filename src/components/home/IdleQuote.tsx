@@ -76,12 +76,6 @@ export default function IdleQuote() {
           from { opacity: 0; }
           to { opacity: 0.7; }
         }
-        @media (prefers-reduced-motion: reduce) {
-          .idle-quote {
-            animation: none;
-            opacity: 0.7;
-          }
-        }
       `}</style>
     </p>
   );

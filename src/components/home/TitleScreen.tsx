@@ -150,12 +150,6 @@ export default function TitleScreen({ onStart }: TitleScreenProps) {
           );
           z-index: 6;
         }
-        @media (prefers-reduced-motion: reduce) {
-          .gondola-pan,
-          .moon-reflection {
-            animation: none !important;
-          }
-        }
       `}</style>
     </div>
   );

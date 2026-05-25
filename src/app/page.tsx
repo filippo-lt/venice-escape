@@ -30,24 +30,9 @@ export default function Home() {
       img.src = src;
     });
 
-    // prefers-reduced-motion → skippa il boot
-    let prefersReduced = false;
-    try {
-      prefersReduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-    } catch {
-      // ignore
-    }
-
-    if (prefersReduced) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setBeat("title");
-      return;
-    }
-
     try {
       const seen = window.localStorage.getItem(BOOT_SEEN_KEY);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBootMode(seen === "1" ? "fast" : "full");
     } catch {
       // default già "full"
