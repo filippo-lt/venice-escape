@@ -109,16 +109,6 @@ export default function BootSequence({ mode, onDone }: BootSequenceProps) {
           60% { transform: translateX(-1px); }
           80% { transform: translateX(1px); }
         }
-        @media (prefers-reduced-motion: reduce) {
-          .boot-line {
-            animation: none;
-            opacity: 1;
-            width: auto;
-          }
-          .boot-line.glitch {
-            animation: none;
-          }
-        }
       `}</style>
     </div>
   );

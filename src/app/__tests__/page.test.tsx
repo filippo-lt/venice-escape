@@ -41,17 +41,6 @@ describe("Home /", () => {
   beforeEach(() => {
     pushMock.mockReset();
     localStorage.clear();
-    // default: not reduced motion
-    window.matchMedia = vi.fn().mockImplementation((q: string) => ({
-      matches: false,
-      media: q,
-      onchange: null,
-      addListener: vi.fn(),
-      removeListener: vi.fn(),
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    }));
   });
 
   afterEach(() => {
@@ -72,7 +61,7 @@ describe("Home /", () => {
     expect(screen.getByTestId("boot")).toHaveAttribute("data-mode", "fast");
   });
 
-  it("skips boot when prefers-reduced-motion is set", () => {
+  it("still plays the boot even with prefers-reduced-motion set", () => {
     window.matchMedia = vi.fn().mockImplementation((q: string) => ({
       matches: true,
       media: q,
@@ -84,8 +73,8 @@ describe("Home /", () => {
       dispatchEvent: vi.fn(),
     }));
     render(<Home />);
-    expect(screen.queryByTestId("boot")).not.toBeInTheDocument();
-    expect(screen.getByTestId("title")).toBeInTheDocument();
+    expect(screen.getByTestId("boot")).toBeInTheDocument();
+    expect(screen.queryByTestId("title")).not.toBeInTheDocument();
   });
 
   it("transitions from boot to title after onDone and persists bootSeen", async () => {
@@ -145,12 +134,4 @@ describe("Home /", () => {
     }
   });
 
-  it("survives matchMedia throwing", () => {
-    window.matchMedia = vi.fn(() => {
-      throw new Error("nope");
-    }) as unknown as typeof window.matchMedia;
-    render(<Home />);
-    // Falls through to boot mode (default full)
-    expect(screen.getByTestId("boot")).toBeInTheDocument();
-  });
 });

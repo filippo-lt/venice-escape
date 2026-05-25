@@ -154,13 +154,3 @@ body {
 .anim-tide          { animation: tide-drift 6s ease-in-out infinite; }
 .anim-glow          { animation: glow-pulse 2.8s ease-in-out infinite; }
 .anim-crt-collapse  { animation: crt-collapse 400ms ease-in forwards; }
-
-@media (prefers-reduced-motion: reduce) {
-  .anim-blink,
-  .anim-flicker,
-  .anim-tide,
-  .anim-glow,
-  .anim-crt-collapse {
-    animation: none !important;
-  }
-}
