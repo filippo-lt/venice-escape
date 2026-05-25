@@ -37,6 +37,11 @@ export type Anchor = {
   /** Path agli asset (placeholder finché non arrivano). */
   audioMain: string;
   scene: string;
+  /**
+   * Frammento di pergamena (immagine AI: iniziale miniata + indizi).
+   * Mostrato come ricompensa nel reveal di /transizione.
+   */
+  fragmentImage: string;
   /** Testo "L'ARCHIVISTA TRASMETTE" mostrato sopra il player. */
   archivistaIntro?: string;
   /** Trascrizione del frammento mostrata persistente sotto l'audio. */
@@ -90,6 +95,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/1",
     audioMain: "/audio/main/ancora_1.mp3",
     scene: "/images/ancora-1/ancora_1_scene.png",
+    fragmentImage: "/images/ancora-1/fragment_1.png",
     archivistaIntro:
       "Trasmetto il primo frammento del manoscritto. La voce è quella di Fra Celestino da Torcello, registrata — per quanto è dato sapere — sotto le fondamenta della città. Ascoltate con attenzione.",
     traduzione:
@@ -139,6 +145,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/2",
     audioMain: "/audio/main/ancora_2.mp3",
     scene: "/images/ancora-2/ancora_2_scene.png",
+    fragmentImage: "/images/ancora-2/fragment_2.png",
     archivistaIntro:
       "Secondo frammento. Fra Celestino ci conduce alle origini idriche della città — un tema, devo ammettere, di reale interesse storico. Il frate sembra però in vena di divagazioni personali. Traduco fedelmente, come d'obbligo.",
     traduzione:
@@ -184,6 +191,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/3",
     audioMain: "/audio/main/ancora_3.mp3",
     scene: "/images/ancora-3/ancora_3_scene.png",
+    fragmentImage: "/images/ancora-3/fragment_3.png",
     archivistaIntro:
       "Terzo frammento. Il frate ci porta in uno dei campi più vivi della città e — devo segnalarlo — sembra di ottimo umore. Allude a frequentazioni giovanili che preferisco non commentare. Traduco la parte utile.",
     traduzione:
@@ -232,6 +240,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/4",
     audioMain: "/audio/main/ancora_4.mp3",
     scene: "/images/ancora-4/ancora_4_scene.png",
+    fragmentImage: "/images/ancora-4/fragment_4.png",
     archivistaIntro:
       "Quarto frammento. Fra Celestino è giunto alle Zattere e — devo segnalarlo nuovamente — pare essersi concesso un secondo ristoro. Alcune espressioni risultano difficili da rendere in italiano contemporaneo. Faccio del mio meglio.",
     traduzione:
@@ -280,6 +289,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/5",
     audioMain: "/audio/main/ancora_5.mp3",
     scene: "/images/ancora-5/ancora_5_scene.png",
+    fragmentImage: "/images/ancora-5/fragment_5.png",
     archivistaIntro:
       "Quinto frammento. Vi conduce sul ponte e — lo confesso — non so più se trasmetto un astronomo o un filosofo da osteria. Divaga sulla pazienza e sulle cose che \"non hanno fretta di cadere\". Mi rassegno e traduco la parte che conta.",
     traduzione:
@@ -326,6 +336,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/6",
     audioMain: "/audio/main/ancora_6.mp3",
     scene: "/images/ancora-6/ancora_6_scene.png",
+    fragmentImage: "/images/ancora-6/fragment_6.png",
     archivistaIntro:
       "Sesto frammento. Vi avevo avvertiti: il passaggio è particolarmente colorito. Il frate è al suo secondo... ristoro della giornata, e si sente. Traduco la parte utile e sorvolo, per quanto possibile, sul resto.",
     traduzione:
@@ -371,6 +382,7 @@ export const ANCHORS: readonly Anchor[] = [
     href: "/ancora/7",
     audioMain: "/audio/main/ancora_7.mp3",
     scene: "/images/ancora-7/ancora_7_scene.png",
+    fragmentImage: "/images/ancora-7/fragment_7.png",
     archivistaIntro:
       "L'ultimo frammento. Il frate ha smesso di scherzare: la voce gli si è fatta diversa. Lo traduco parola per parola, perché stavolta — credo — conta tutto.",
     traduzione:

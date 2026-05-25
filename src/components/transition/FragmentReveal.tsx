@@ -1,23 +1,37 @@
-// Box pixel-art che rivela la lettera del frammento.
+// Box pixel-art che rivela il frammento.
 // Sequenza CSS (animation-delay):
 //   t=0     parchment sweep (overlay ocra che spazza, ~300ms ease-out)
 //   t=0     box vuoto, bordo blood-bright, scanline interno
 //   t=400ms lampo bianco + shake (200ms)
-//   t=600ms lettera appare in font-pixel text-5xl text-sand + anim-glow
+//   t=600ms frammento appare (lettera pixel o pergamena) + anim-glow
 //   t=550ms echo halo (anello ocra che si espande e svanisce, ~500ms)
 //   t=1200ms ◆ pieno (handled da NextDestinationCard/InlineInventory via state)
 // Con prefers-reduced-motion tutti gli effetti decadono a istantaneo
-// (lettera subito visibile, sweep/halo/flash nascosti).
+// (frammento subito visibile, sweep/halo/flash nascosti).
+//
+// Se `image` è passato si rivela la pergamena miniata (l'iniziale è già
+// disegnata sull'asset, quindi non sovrapponiamo la lettera pixel: resta
+// solo una piccola etichetta d'angolo). Senza `image` si mostra la lettera
+// grande — fallback usato dai test e per asset mancanti.
+
+import Image from "next/image";
 
 type Props = {
   /** Lettera del frammento (es. "V"). */
   letter: string;
+  /** Pergamena del frammento (es. "/images/ancora-1/fragment_1.png"). */
+  image?: string;
 };
 
-export function FragmentReveal({ letter }: Props) {
+export function FragmentReveal({ letter, image }: Props) {
   return (
     <div
-      className="fragment-reveal relative mx-auto h-32 w-32 select-none"
+      className={
+        image
+          ? "fragment-reveal relative mx-auto w-full max-w-[280px] select-none"
+          : "fragment-reveal relative mx-auto h-32 w-32 select-none"
+      }
+      style={image ? { aspectRatio: "1160 / 1350" } : undefined}
       aria-label={`Frammento ${letter}`}
       role="img"
     >
@@ -62,10 +76,32 @@ export function FragmentReveal({ letter }: Props) {
         }}
       />
 
-      {/* Lettera: appare a t=600ms con glow */}
-      <div className="fragment-letter absolute inset-0 flex items-center justify-center font-pixel text-5xl text-sand opacity-0 anim-glow">
-        {letter}
-      </div>
+      {/* Frammento: appare a t=600ms. Pergamena miniata se disponibile,
+          altrimenti la lettera pixel grande. */}
+      {image ? (
+        <div className="fragment-letter absolute inset-0 opacity-0">
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="280px"
+            // next/image (non plain <img>): la pergamena è un'illustrazione
+            // ad alta risoluzione (~3MB), va ricampionata a webp per la calle.
+            // imageRendering:auto perché NON è pixel art.
+            className="object-contain"
+            style={{ imageRendering: "auto" }}
+          />
+          {/* Etichetta d'angolo con la lettera (l'iniziale miniata è già
+              sull'asset, qui solo per leggibilità/accessibilità). */}
+          <span className="absolute bottom-1 right-1 border border-blood-bright bg-bg-deep/85 px-1.5 py-0.5 font-pixel text-[12px] text-sand">
+            {letter}
+          </span>
+        </div>
+      ) : (
+        <div className="fragment-letter absolute inset-0 flex items-center justify-center font-pixel text-5xl text-sand opacity-0 anim-glow">
+          {letter}
+        </div>
+      )}
 
       <style>{`
         @keyframes fragmentFlashKf {
