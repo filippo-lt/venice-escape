@@ -149,6 +149,14 @@ body {
   100% { transform: scaleY(0);    filter: brightness(0); }
 }
 
+/* Titoli di coda (Beat 4 /finale): scroll verticale dal basso verso l'alto.
+   translateY(100vh) → il blocco parte sotto la piega; translateY(-100%) →
+   esce completamente oltre il bordo superiore (relativo alla propria altezza). */
+@keyframes credits-scroll {
+  from { transform: translateY(100vh); }
+  to   { transform: translateY(-100%); }
+}
+
 .anim-blink         { animation: blink 1s infinite; }
 .anim-flicker       { animation: flicker 2.4s ease-in-out infinite; }
 .anim-tide          { animation: tide-drift 6s ease-in-out infinite; }
