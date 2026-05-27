@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { AudioPlayer, DialogBox } from "@/components/scumm";
 import {
   completeMainQuest,
@@ -11,6 +11,7 @@ import {
   saveProgress,
   type Progress,
 } from "@/lib/progress";
+import { CreditsRoll } from "./CreditsRoll";
 import { LettersComposition } from "./LettersComposition";
 
 /**
@@ -103,6 +104,9 @@ export function FinalePage() {
     getReducedMotionSnapshot,
     getReducedMotionServerSnapshot,
   );
+
+  // Beat 4 — titoli di coda: overlay facoltativo sopra /finale (no route).
+  const [creditsOpen, setCreditsOpen] = useState(false);
 
   // Bypass dev: ?gm=skip o ?from=ancora7
   const bypass = useMemo(() => {
@@ -227,6 +231,15 @@ export function FinalePage() {
               ↩ TORNA VERSO LA STAZIONE
             </Link>
 
+            {/* Coda facoltativa: titoli di coda. Più piccola, secondaria. */}
+            <button
+              type="button"
+              onClick={() => setCreditsOpen(true)}
+              className="mx-auto inline-block min-h-11 border-2 border-stone-mid bg-transparent px-4 py-2 font-pixel text-[9px] tracking-widest text-ocra-light hover:border-ocra hover:text-sand active:translate-x-[1px] active:translate-y-[1px]"
+            >
+              ▸ TITOLI DI CODA
+            </button>
+
             {SIDE_CONTENT_RELEASED ? (
               <Link
                 href="/manoscritto"
@@ -273,6 +286,14 @@ export function FinalePage() {
           mi raccomando, lo sposo intero alla stazione.&quot;)
         </p>
       </section>
+
+      {/* BEAT 4 — Titoli di coda (overlay facoltativo) */}
+      {creditsOpen && (
+        <CreditsRoll
+          onClose={() => setCreditsOpen(false)}
+          reducedMotion={reducedMotion}
+        />
+      )}
     </main>
   );
 }
