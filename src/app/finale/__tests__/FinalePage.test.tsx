@@ -126,6 +126,30 @@ describe("FinalePage", () => {
     expect(navState.router.replace).toHaveBeenCalledWith("/ancora/3");
   });
 
+  it("re-reads fresh progress on remount instead of a stale cache", async () => {
+    // 1ª visita con progresso incompleto → redirect e cache popolata.
+    saveProgress({
+      ...initialProgress(),
+      fragments: { 1: "V", 2: "E" },
+    });
+    const { FinalePage } = await import("../FinalePage");
+    const { unmount } = render(<FinalePage />);
+    await flush();
+    expect(navState.router.replace).toHaveBeenCalledWith("/ancora/3");
+    unmount();
+
+    // L'utente completa la quest e torna su /finale: niente redirect stantio.
+    navState.router = makeRouter();
+    saveProgress({
+      ...initialProgress(),
+      fragments: { 1: "V", 2: "E", 3: "N", 4: "E", 5: "Z", 6: "I", 7: "A" },
+    });
+    render(<FinalePage />);
+    await flush();
+    expect(navState.router.replace).not.toHaveBeenCalled();
+    expect(screen.getByText(/FINE DELLA MAIN QUEST/i)).toBeInTheDocument();
+  });
+
   it("bypasses redirect when ?gm=skip", async () => {
     navState.search = new URLSearchParams({ gm: "skip" });
     // fresh progress with NO fragments
