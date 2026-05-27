@@ -54,6 +54,15 @@ function subscribeProgress(notify: () => void): () => void {
   }
   return () => {
     progressListeners.delete(notify);
+    // Quando l'ultimo subscriber si stacca (pagina smontata) invalidiamo la
+    // cache: alla prossima visita /finale rilegge lo stato reale da
+    // localStorage. Senza questo, una visita precedente con progresso
+    // incompleto (es. ?gm=skip, o un replay dopo /reset, nella stessa
+    // sessione SPA) lasciava una cache stantia che rimandava erroneamente
+    // alla prima ancora invece di mostrare il finale.
+    if (progressListeners.size === 0) {
+      cachedProgress = null;
+    }
   };
 }
 
